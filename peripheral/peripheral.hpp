@@ -30,6 +30,16 @@ class Peripheral : public Base
 	void announceNetworkDisconnected();
 	void announceError();
 	void announceCameraError();
+    
+    private:
+	bool checkCrc(unsigned char * crc, unsigned char * data, unsigned int size);
+
+	boost::asio::io_service *m_io;
+	boost::asio::serial_port *m_serial;
+	bool m_isrun;
+	boost::mutex m_lock;
+	boost::shared_ptr<boost::thread> m_receiverThread;
+	mutable		ExternalEvent m_externalEvent;
 };
 #endif
 
