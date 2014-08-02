@@ -5,9 +5,14 @@
 QT	+=	core gui network sql
 TEMPLATE = app
 TARGET = tcs
-INCLUDEPATH += . peripheral
-
+INCLUDEPATH += . peripheral test
+INCLUDEPATH += /usr/include/boost/
 LIBS += -lboost_thread -lboost_system 
 # Input
-HEADERS += base.hpp peripheral/peripheral.hpp
-SOURCES += base.cpp main.cpp peripheral/peripheral.cpp
+HEADERS += base.hpp peripheral/peripheral.hpp test/peripheralTester.hpp
+SOURCES += base.cpp main.cpp peripheral/peripheral.cpp test/peripheralTester.cpp
+
+RCC_DIR = "Build/RCC"
+MOC_DIR = "Build/MOC"
+OBJECTS_DIR = "Build/OBJECTS"
+UI_DIR = "Build/UI"

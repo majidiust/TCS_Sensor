@@ -5,7 +5,7 @@
 #include <cstring>
 #include <boost/asio.hpp>
 #include <boost/utility.hpp>
-#include <boost/signal2/signal.hpp>
+#include <boost/signals2/signal.hpp>
 #include <boost/thread/mutex.hpp>
 #include <boost/thread/thread.hpp>
 

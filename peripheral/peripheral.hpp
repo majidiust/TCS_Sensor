@@ -9,9 +9,10 @@ using namespace std;
 class Peripheral : public Base
 {
     public:
-	typedef boost::signal2::signal<void(char)> KeyPressed;	
-	typedef boost::signal2::signa<void (std::string)> ExternalEvent;
-	typedef boost::signal2::connection PeripheralConnection;
+	typedef boost::signals2::signal<void(char)> KeyPressed;	
+	typedef boost::signals2::signal<void (std::string)> ExternalEvent;
+	typedef boost::signals2::connection PeripheralConnection;
+
 	bool openPort(std::string port, unsigned int baudRate);
 	Peripheral();
 	~Peripheral();
@@ -36,7 +37,7 @@ class Peripheral : public Base
 
 	boost::asio::io_service *m_io;
 	boost::asio::serial_port *m_serial;
-	bool m_isrun;
+	bool m_isRun;
 	boost::mutex m_lock;
 	boost::shared_ptr<boost::thread> m_receiverThread;
 	mutable		ExternalEvent m_externalEvent;

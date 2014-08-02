@@ -60,12 +60,12 @@ Peripheral::PeripheralConnection Peripheral::connectExternalEventHandler(const E
     return m_externalEvent.connect(slot);
 }
 
-Peripheral::disconnect(PeripheralConnection connection)
+void Peripheral::disconnect(PeripheralConnection connection)
 {
-    conenction.disconnect();
+    connection.disconnect();
 }
 
-bool Peripheral::checkCrc(unsigned char ** crc, unsigned char *data, unsigned int size)
+bool Peripheral::checkCrc(unsigned char * crc, unsigned char *data, unsigned int size)
 {
     unsigned int currentCRC = 0 ;
     for(unsigned int i = 0 ; i < size - 1 ; i ++)
