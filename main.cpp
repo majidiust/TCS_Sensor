@@ -10,6 +10,5 @@ int main(int argc, char ** argv)
     //sample usage for periphera tester with /dev/ttyUSB0 and baud rate 9600
     PeripheralTester test("/dev/ttyUSB0", 9600);
     cout << " Entry point of project" << endl;
-
     return app.exec();
 }

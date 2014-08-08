@@ -3,7 +3,9 @@
 PeripheralTester::PeripheralTester(std::string port, unsigned int baudRate)
 {
     m_peripheral = new Peripheral();
+    connectToPeripheral();
     m_peripheral->openPort(port, baudRate);
+    m_peripheral->start();
 }
 
 void PeripheralTester::connectToPeripheral()

@@ -37,14 +37,46 @@ void Peripheral::writeString(std::string s)
 
 void Peripheral::receiver()
 {
+    using namespace boost;
+    std::cout << m_isRun << endl;
+    std::cout << __FUNCTION__ << endl;
     while(m_isRun)
     {
-    
+        std::cout << " In endless loop" << endl;
+        unsigned char * sot  = new unsigned char[1];
+        unsigned char * id   = new unsigned char[1];
+        unsigned char * cmd  = new unsigned char[1];
+        unsigned char * s = new unsigned char[1];
+
+        asio::read(*m_serial, asio::buffer(sot, 1));
+        asio::read(*m_serial, asio::buffer(id, 1));
+        asio::read(*m_serial, asio::buffer(cmd, 1));
+        asio::read(*m_serial, asio::buffer(s, 1));
+
+                unsigned int size = (int)s[0];
+
+        unsigned char * data = new unsigned char[size];
+        for(int i = 0 ; i < size ; i++)
+        {
+            unsigned char *tempBuffer = new unsigned char[1];
+            asio::read(*m_serial, asio::buffer(tempBuffer, 1));
+            data[i] = tempBuffer[0];
+            std::cout << getHex(data[i]);
+        }
+
+         unsigned char * crc = new unsigned char[1];
+         unsigned char * eot = new unsigned char[1];
+         asio::read(*m_serial, asio::buffer(crc, 1));
+         asio::read(*m_serial, asio::buffer(eot, 1));
+
+         cout << getHex(sot[0]) << ":" << getHex(id[0]) << " : " << getHex(cmd[0]) << " : " << getHex(s[0]) << endl;
+
     }
 }
 
 void Peripheral::start()
 {
+    m_isRun = true;
     m_receiverThread = boost::shared_ptr<boost::thread>(new boost::thread(boost::bind(&Peripheral::receiver, this)));
 }
 
@@ -52,7 +84,14 @@ void Peripheral::stop()
 {
     boost::mutex::scoped_lock l(m_lock);
     m_isRun = false;
-    
+}
+
+char* Peripheral::getHex(char c)
+{
+    char *f = new char[8];
+
+    sprintf(f, "%x ", (c&0x000000ff));
+    return f;
 }
 
 Peripheral::PeripheralConnection Peripheral::connectExternalEventHandler(const ExternalEvent::slot_type &slot)
