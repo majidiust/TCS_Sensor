@@ -11,6 +11,7 @@ PeripheralTester::PeripheralTester(std::string port, unsigned int baudRate)
 void PeripheralTester::connectToPeripheral()
 {
     m_connection = m_peripheral->connectExternalEventHandler(boost::bind(&PeripheralTester::newEventHandler, this, _1));
+    m_connection = m_peripheral->connectCommandHandler(boost::bind(&PeripheralTester::newCommandHandler, this, _1));
 }
 
 void PeripheralTester::disconnectFromPeripheral()
@@ -21,4 +22,29 @@ void PeripheralTester::disconnectFromPeripheral()
 void PeripheralTester::newEventHandler(std::string arg)
 {
     std::cout << " new event : " << arg << endl;
+}
+
+void PeripheralTester::newCommandHandler(int commandType)
+{
+    switch(commandType)
+    {
+    case Peripheral::CTBegin:
+        std::cout << "Vehicle enter" << endl;
+        break;
+    case Peripheral::CTCalibration:
+        std::cout << "Callibration" << endl;
+        break;
+    case Peripheral::CTEnd:
+        std::cout << "Vehicle exit" << endl;
+        break;;
+    case Peripheral::CTNode:
+        std::cout << " None commande" << endl;
+        break;
+    case Peripheral::CTPowerOn:
+        std::cout << " Power On" << endl;
+        break;
+    case Peripheral::CTTakePicture:
+        std::cout << "Take picture" << endl;
+        break;
+    }
 }

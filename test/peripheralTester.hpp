@@ -4,15 +4,14 @@
 
 class PeripheralTester
 {
-    public:
-
-	PeripheralTester(std::string port, unsigned int baudRate);
-	void	connectToPeripheral();
-	void	disconnectFromPeripheral();	
-	void	newEventHandler(std::string arg);
-	
-    private:
-	Peripheral *m_peripheral;
-	Peripheral::PeripheralConnection m_connection;
+public:
+    PeripheralTester(std::string port, unsigned int baudRate);
+    void	connectToPeripheral();
+    void	disconnectFromPeripheral();
+    void	newEventHandler(std::string arg);
+    void    newCommandHandler(int commandType);
+private:
+    Peripheral *m_peripheral;
+    Peripheral::PeripheralConnection m_connection;
 };
 #endif
