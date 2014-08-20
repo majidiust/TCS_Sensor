@@ -15,10 +15,10 @@ CXX           = g++
 DEFINES       = -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -m64 -pipe -O2 -Wall -W -D_REENTRANT -fPIE $(DEFINES)
 CXXFLAGS      = -m64 -pipe -O2 -Wall -W -D_REENTRANT -fPIE $(DEFINES)
-INCPATH       = -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I. -I. -Iperipheral -Itest -Irtsp -I/usr/include/boost -I/usr/include/qt5 -I/usr/include/qt5/QtSql -I/usr/include/qt5/QtNetwork -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -IBuild/MOC
+INCPATH       = -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I. -I. -Iperipheral -Itest -Irtsp -Idb -I/usr/include/boost -I/usr/include/qt5 -I/usr/include/qt5/QtSql -I/usr/include/qt5/QtNetwork -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -IBuild/MOC
 LINK          = g++
 LFLAGS        = -m64 -Wl,-O1
-LIBS          = $(SUBLIBS) -L/usr/X11R6/lib64 -lboost_thread -lboost_system -lQt5Sql -L/usr/lib/x86_64-linux-gnu -lQt5Network -lQt5Gui -lQt5Core -lGL -lpthread 
+LIBS          = $(SUBLIBS) -L/usr/X11R6/lib64 -lboost_thread -lboost_system -lmongoclient -lQt5Sql -L/usr/lib/x86_64-linux-gnu -lQt5Network -lQt5Gui -lQt5Core -lGL -lpthread 
 AR            = ar cqs
 RANLIB        = 
 QMAKE         = /usr/lib/x86_64-linux-gnu/qt5/bin/qmake
@@ -45,14 +45,16 @@ OBJECTS_DIR   = Build/OBJECTS/
 
 ####### Files
 
-SOURCES       = rtsp/rtspclient.cpp \
+SOURCES       = db/mongo.cpp \
+		rtsp/rtspclient.cpp \
 		base.cpp \
 		main.cpp \
 		peripheral/peripheral.cpp \
 		test/peripheralTester.cpp \
 		test/rtsptester.cpp Build/MOC/moc_rtspclient.cpp \
 		Build/MOC/moc_rtsptester.cpp
-OBJECTS       = Build/OBJECTS/rtspclient.o \
+OBJECTS       = Build/OBJECTS/mongo.o \
+		Build/OBJECTS/rtspclient.o \
 		Build/OBJECTS/base.o \
 		Build/OBJECTS/main.o \
 		Build/OBJECTS/peripheral.o \
@@ -283,7 +285,7 @@ qmake_all: FORCE
 
 dist: 
 	@test -d Build/OBJECTS/tcs1.0.0 || mkdir -p Build/OBJECTS/tcs1.0.0
-	$(COPY_FILE) --parents $(SOURCES) $(DIST) Build/OBJECTS/tcs1.0.0/ && $(COPY_FILE) --parents rtsp/rtspclient.hpp base.hpp peripheral/peripheral.hpp test/peripheralTester.hpp test/rtsptester.h Build/OBJECTS/tcs1.0.0/ && $(COPY_FILE) --parents rtsp/rtspclient.cpp base.cpp main.cpp peripheral/peripheral.cpp test/peripheralTester.cpp test/rtsptester.cpp Build/OBJECTS/tcs1.0.0/ && (cd `dirname Build/OBJECTS/tcs1.0.0` && $(TAR) tcs1.0.0.tar tcs1.0.0 && $(COMPRESS) tcs1.0.0.tar) && $(MOVE) `dirname Build/OBJECTS/tcs1.0.0`/tcs1.0.0.tar.gz . && $(DEL_FILE) -r Build/OBJECTS/tcs1.0.0
+	$(COPY_FILE) --parents $(SOURCES) $(DIST) Build/OBJECTS/tcs1.0.0/ && $(COPY_FILE) --parents db/mongo.hpp rtsp/rtspclient.hpp base.hpp peripheral/peripheral.hpp test/peripheralTester.hpp test/rtsptester.h Build/OBJECTS/tcs1.0.0/ && $(COPY_FILE) --parents db/mongo.cpp rtsp/rtspclient.cpp base.cpp main.cpp peripheral/peripheral.cpp test/peripheralTester.cpp test/rtsptester.cpp Build/OBJECTS/tcs1.0.0/ && (cd `dirname Build/OBJECTS/tcs1.0.0` && $(TAR) tcs1.0.0.tar tcs1.0.0 && $(COMPRESS) tcs1.0.0.tar) && $(MOVE) `dirname Build/OBJECTS/tcs1.0.0`/tcs1.0.0.tar.gz . && $(DEL_FILE) -r Build/OBJECTS/tcs1.0.0
 
 
 clean:compiler_clean 
@@ -385,6 +387,17 @@ Build/MOC/moc_rtspclient.cpp: base.hpp \
 		/usr/include/qt5/QtCore/QString \
 		/usr/include/qt5/QtCore/QProcess \
 		/usr/include/qt5/QtCore/qprocess.h \
+		/usr/include/qt5/QtCore/QDebug \
+		/usr/include/qt5/QtCore/qdebug.h \
+		/usr/include/qt5/QtCore/qhash.h \
+		/usr/include/qt5/QtCore/qmap.h \
+		/usr/include/qt5/QtCore/qtextstream.h \
+		/usr/include/qt5/QtCore/qlocale.h \
+		/usr/include/qt5/QtCore/qvariant.h \
+		/usr/include/qt5/QtCore/qvector.h \
+		/usr/include/qt5/QtCore/qpoint.h \
+		/usr/include/qt5/QtCore/qset.h \
+		/usr/include/qt5/QtCore/qcontiguouscache.h \
 		rtsp/rtspclient.hpp
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) $(INCPATH) -I/usr/include/c++/4.8 -I/usr/include/x86_64-linux-gnu/c++/4.8 -I/usr/include/c++/4.8/backward -I/usr/lib/gcc/x86_64-linux-gnu/4.8/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include rtsp/rtspclient.hpp -o Build/MOC/moc_rtspclient.cpp
 
@@ -491,6 +504,9 @@ compiler_clean: compiler_moc_header_clean
 
 ####### Compile
 
+Build/OBJECTS/mongo.o: db/mongo.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Build/OBJECTS/mongo.o db/mongo.cpp
+
 Build/OBJECTS/rtspclient.o: rtsp/rtspclient.cpp rtsp/rtspclient.hpp \
 		base.hpp \
 		/usr/include/qt5/QtCore/QObject \
@@ -567,7 +583,18 @@ Build/OBJECTS/rtspclient.o: rtsp/rtspclient.cpp rtsp/rtspclient.hpp \
 		/usr/include/qt5/QtCore/qbasictimer.h \
 		/usr/include/qt5/QtCore/QString \
 		/usr/include/qt5/QtCore/QProcess \
-		/usr/include/qt5/QtCore/qprocess.h
+		/usr/include/qt5/QtCore/qprocess.h \
+		/usr/include/qt5/QtCore/QDebug \
+		/usr/include/qt5/QtCore/qdebug.h \
+		/usr/include/qt5/QtCore/qhash.h \
+		/usr/include/qt5/QtCore/qmap.h \
+		/usr/include/qt5/QtCore/qtextstream.h \
+		/usr/include/qt5/QtCore/qlocale.h \
+		/usr/include/qt5/QtCore/qvariant.h \
+		/usr/include/qt5/QtCore/qvector.h \
+		/usr/include/qt5/QtCore/qpoint.h \
+		/usr/include/qt5/QtCore/qset.h \
+		/usr/include/qt5/QtCore/qcontiguouscache.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Build/OBJECTS/rtspclient.o rtsp/rtspclient.cpp
 
 Build/OBJECTS/base.o: base.cpp base.hpp

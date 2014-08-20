@@ -2,6 +2,7 @@
 #include <QtCore>
 #include "../test/peripheralTester.hpp"
 #include "../test/rtsptester.h"
+
 using namespace std;;
 
 int main(int argc, char ** argv)

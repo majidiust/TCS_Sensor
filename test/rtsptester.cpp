@@ -6,7 +6,7 @@ RTSPTester::RTSPTester(QObject *parent) :
     m_client = new RTSPClient("1212", "rtsp://192.168.88.1:8090/1", "fps=1/10");
     connect(m_client, SIGNAL(processStarted()), this, SLOT(started()));
     connect(m_client, SIGNAL(processStopped()), this, SLOT(stopped()));
-    m_client->startProcess();
+    m_client->start();
 }
 
 

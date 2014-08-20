@@ -10,10 +10,10 @@
 #include <QString>
 #include <QProcess>
 #include <QDebug>
-
+#include <QThread>
 using namespace std;
 
-class RTSPClient : public QObject
+class RTSPClient : public QThread
 {
     Q_OBJECT
 public:
@@ -23,14 +23,17 @@ public slots:
     void startProcess();
     void stopProcess();
     void stopProcessDelayed();
+    void readyReadOutput();
+    void run();
+
 signals:
     void processStopped();
     void processStarted();
 private:
     QProcess *m_process;
-    const QString m_root = "/home/majid/blob";
-    const int m_defultThr = 4000; // milisecond
-    const QString m_program = "ffmpeg";
+    QString m_root;
+    int m_defultThr;
+    QString m_program;
     QStringList m_argument;
 };
 
