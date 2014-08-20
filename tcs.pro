@@ -5,14 +5,16 @@
 QT	+=	core gui network sql
 TEMPLATE = app
 TARGET = tcs
-INCLUDEPATH += . peripheral test rtsp db
+INCLUDEPATH += . peripheral test rtsp db utlity
 INCLUDEPATH += /usr/include/boost/
 LIBS += -lboost_thread -lboost_system -lmongoclient 
 # Input
-HEADERS += db/mongo.hpp rtsp/rtspclient.hpp base.hpp peripheral/peripheral.hpp test/peripheralTester.hpp \
-    test/rtsptester.h
-SOURCES += db/mongo.cpp rtsp/rtspclient.cpp base.cpp main.cpp peripheral/peripheral.cpp test/peripheralTester.cpp \
-    test/rtsptester.cpp
+HEADERS += utility/cdate.hpp db/mongo.hpp rtsp/rtspclient.hpp base.hpp peripheral/peripheral.hpp test/peripheralTester.hpp \
+    test/rtsptester.h \
+    test/dbtest.hpp
+SOURCES += utility/cdate.cpp db/mongo.cpp rtsp/rtspclient.cpp base.cpp main.cpp peripheral/peripheral.cpp test/peripheralTester.cpp \
+    test/rtsptester.cpp \
+    test/dbtest.cpp
 
 RCC_DIR = "Build/RCC"
 MOC_DIR = "Build/MOC"

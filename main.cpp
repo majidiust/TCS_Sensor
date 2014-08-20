@@ -2,7 +2,7 @@
 #include <QtCore>
 #include "../test/peripheralTester.hpp"
 #include "../test/rtsptester.h"
-
+#include "../test/dbtest.hpp"
 using namespace std;;
 
 int main(int argc, char ** argv)
@@ -13,7 +13,7 @@ int main(int argc, char ** argv)
 //    PeripheralTester test("/dev/ttyUSB0", 9600);
    // cout << " Entry point of project" << endl;
 
-    RTSPTester rtspTestr;
-
+   // RTSPTester rtspTestr;
+    dbtest test;
     return app.exec();
 }
