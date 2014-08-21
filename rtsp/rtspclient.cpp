@@ -1,10 +1,10 @@
 #include "rtspclient.hpp"
+#include "settings.hpp"
 
 RTSPClient::RTSPClient(QString recordId, QString rtspUrl, QString fps, QObject *parent){
 
     m_program = "ffmpeg";
-    m_defultThr = 20000;
-    m_root = "/home/agent/blob";
+    m_root = "/home/majid/blob";
     QDir dir(m_root);
     if (!dir.exists()){
       dir.mkpath(".");
@@ -31,13 +31,18 @@ void RTSPClient::startProcess(){
 }
 
 void RTSPClient::stopProcess(){
-    m_process->close();
-    m_process->waitForFinished();
-    emit processStopped();
+    
+    //while(m_process->waitForFinished(250))
+    {
+	m_process->kill();
+	this->terminate();
+    }
+    
 }
 
 void RTSPClient::stopProcessDelayed(){
-    QTimer::singleShot(m_defultThr, this, SLOT(stopProcess()));
+    
+    QTimer::singleShot(Settings::StopRTSPThr, this, SLOT(stopProcess()));
 }
 
 void RTSPClient::readyReadOutput()

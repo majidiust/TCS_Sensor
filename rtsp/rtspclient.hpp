@@ -32,7 +32,6 @@ signals:
 private:
     QProcess *m_process;
     QString m_root;
-    int m_defultThr;
     QString m_program;
     QStringList m_argument;
 };

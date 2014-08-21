@@ -1,18 +1,32 @@
 #include "kigManager.hpp"
+#include "settings.hpp"
 
-KIGManager::KIGManager(std::string port, int baudRate){
+KIGManager::KIGManager(){
+    std::cout << "Kaveh industrial group control traffic system" << endl;
+}
+
+void KIGManager::start(){
+    std::cout << " Started KIG Agent ............ " << endl;
     m_db.connectToDB();
+    m_db.loadSettings();
     m_peripheral = new Peripheral();
     m_connection = m_peripheral->connectExternalEventHandler(boost::bind(&KIGManager::newEventHandler, this, _1));
     m_connection = m_peripheral->connectCommandHandler(boost::bind(&KIGManager::newCommandHandler, this, _1));
-    m_peripheral->openPort(port, baudRate);
-    m_peripheral->start();
     m_lastStep = 0;
+    tryOpenPort();
 }
 
 void KIGManager::disconnectFromPeripheral()
 {
     m_peripheral->disconnect(m_connection);
+}
+
+void KIGManager::tryOpenPort(){
+    do{
+        usleep(Settings::ReTryOpenSerialPort);
+        std::cout << "Try open serial port ..." << " baudrate : " << Settings::Baudrate << " : port /dev/ttyUSB0" << endl;
+    }while(!m_peripheral->openPort("/dev/ttyUSB0", Settings::Baudrate));
+    m_peripheral->start();
 }
 
 void KIGManager::newEventHandler(std::string arg)
@@ -27,14 +41,14 @@ void KIGManager::newCommandHandler(int commandType)
     case Peripheral::CTBegin:
         std::cout << "Vehicle enter" << endl;
         m_lastStep = 1;
-	saveEventBegin();
+        saveEventBegin();
         break;
     case Peripheral::CTCalibration:
         std::cout << "Callibration" << endl;
         break;
     case Peripheral::CTEnd:
         std::cout << "Vehicle exit" << endl;
-	saveEventEnd();
+        saveEventEnd();
         break;;
     case Peripheral::CTNode:
         std::cout << " None commande" << endl;
@@ -52,7 +66,7 @@ void KIGManager::newCommandHandler(int commandType)
 void KIGManager::saveEventBegin(){
     QString id = m_db.insertNewTraffic();
     std::cout << id.toStdString() << endl;
-    m_client = new RTSPClient(id, "rtsp://admin:admin@192.168.2.1:554/mpeg", "fps=5/10");
+    m_client = new RTSPClient(id, QString::fromStdString(Settings::RTSPUrl), QString::fromStdString(Settings::FPS));
     m_client->start();
 }
 
@@ -64,7 +78,7 @@ void KIGManager::saveEventEnd(){
 void KIGManager::saveEventOnDemand(){
     QString id = m_db.insertNewTraffic();
     std::cout << id.toStdString() << endl;
-    m_client = new RTSPClient(id, "rtsp://admin:admin@192.168.2.1:554/mpeg", "fps=5/10");
+    m_client = new RTSPClient(id, QString::fromStdString(Settings::RTSPUrl), QString::fromStdString(Settings::FPS));
     m_client->start();
     m_client->stopProcessDelayed();
 }

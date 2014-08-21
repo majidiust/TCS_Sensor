@@ -11,14 +11,15 @@ class KIGManager: public QObject
     Q_OBJECT    
 
     public:
-        KIGManager(std::string port, int baudRate);
+        KIGManager();
+        void    start();
         void	newEventHandler(std::string arg);
         void    newCommandHandler(int commandType);
         void    disconnectFromPeripheral();
         void    saveEventBegin();
         void 	saveEventEnd();
         void    saveEventOnDemand();
-
+        void	tryOpenPort();
     private:    
         RTSPClient *m_client;
         MongoDB m_db;

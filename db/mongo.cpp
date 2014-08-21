@@ -1,4 +1,5 @@
 ﻿#include "mongo.hpp"
+#include "settings.hpp"
 
 void MongoDB::connectToDB(QString dbUrl){
     try
@@ -8,6 +9,36 @@ void MongoDB::connectToDB(QString dbUrl){
     }
     catch(const mongo::DBException &e){
         qDebug() << e.what();
+    }
+}
+
+void MongoDB::loadSettings(){
+    bool isThereSettings = false;
+    std::auto_ptr<mongo::DBClientCursor> cursor =
+            m_connection.query(this->getSettingCollectionName());
+    if (cursor->more()) {
+        std::cout << "settings readed from database" << std::endl;
+        mongo::BSONObj p = cursor->next();
+        Settings::Baudrate = atoi(p.getStringField("baudRate"));
+        std::cout << "try : " << p.getStringField("baudRate") << std::endl;
+        Settings::FPS = p.getStringField("FPS");
+        Settings::ReTryOpenSerialPort = atoi(p.getStringField("ReTryOpenSerialPort"));
+        Settings::RTSPUrl = p.getStringField("RTSPUrl");
+        Settings::StopRTSPThr = atoi(p.getStringField("StopRTSPThr"));
+        Settings::log();
+        isThereSettings = true;
+    }
+    if(!isThereSettings){
+        mongo::BSONObj obj =  mongo::BSONObjBuilder().
+                genOID().
+                append("baudRate" , std::to_string(Settings::Baudrate)).
+                append("FPS", Settings::FPS).
+                append("ReTryOpenSerialPort",std::to_string(Settings::ReTryOpenSerialPort)).
+                append("RTSPUrl", Settings::RTSPUrl).
+                append("StopRTSPThr", std::to_string(Settings::StopRTSPThr)).
+                obj();
+        m_connection.insert(getSettingCollectionName(), obj);
+        std::cout << "Settings inited in database" << endl;
     }
 }
 
@@ -38,8 +69,13 @@ QString MongoDB::insertNewTraffic(){
 MongoDB::MongoDB(){
     m_dbName = "KIG";
     m_traficCollectionName = "traffic";
+    m_settingsCollectionName = "settings";
 }
 
 std::string MongoDB::getCollectionName(){
     return (m_dbName + "." + m_traficCollectionName).toStdString();
+}
+
+std::string MongoDB::getSettingCollectionName(){
+    return (m_dbName + "." + m_settingsCollectionName).toStdString();
 }

@@ -14,7 +14,7 @@ CC            = gcc
 CXX           = g++
 DEFINES       = -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -m64 -pipe -O2 -Wall -W -D_REENTRANT -fPIE $(DEFINES)
-CXXFLAGS      = -m64 -pipe -O2 -Wall -W -D_REENTRANT -fPIE $(DEFINES)
+CXXFLAGS      = -m64 -pipe -O2 -std=c++0x -Wall -W -D_REENTRANT -fPIE $(DEFINES)
 INCPATH       = -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I. -I. -Iperipheral -Itest -Irtsp -Idb -Iutlity -I/usr/include/boost -I/usr/include/qt5 -I/usr/include/qt5/QtSql -I/usr/include/qt5/QtNetwork -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -IBuild/MOC
 LINK          = g++
 LFLAGS        = -m64 -Wl,-O1
@@ -54,6 +54,7 @@ SOURCES       = kigManager.cpp \
 		peripheral/peripheral.cpp \
 		test/peripheralTester.cpp \
 		test/rtsptester.cpp \
+		db/settings.cpp \
 		test/dbtest.cpp Build/MOC/moc_kigManager.cpp \
 		Build/MOC/moc_rtspclient.cpp \
 		Build/MOC/moc_rtsptester.cpp
@@ -66,6 +67,7 @@ OBJECTS       = Build/OBJECTS/kigManager.o \
 		Build/OBJECTS/peripheral.o \
 		Build/OBJECTS/peripheralTester.o \
 		Build/OBJECTS/rtsptester.o \
+		Build/OBJECTS/settings.o \
 		Build/OBJECTS/dbtest.o \
 		Build/OBJECTS/moc_kigManager.o \
 		Build/OBJECTS/moc_rtspclient.o \
@@ -116,6 +118,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resolve_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_post.prf \
+		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/c++11.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/unix/gdb_dwarf_index.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/warn_on.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt.prf \
@@ -207,6 +210,7 @@ Makefile: tcs.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64/qmake.conf 
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resolve_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_post.prf \
+		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/c++11.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/unix/gdb_dwarf_index.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/warn_on.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt.prf \
@@ -270,6 +274,7 @@ Makefile: tcs.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64/qmake.conf 
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resolve_config.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_post.prf:
+/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/c++11.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/unix/gdb_dwarf_index.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/warn_on.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt.prf:
@@ -293,7 +298,7 @@ qmake_all: FORCE
 
 dist: 
 	@test -d Build/OBJECTS/tcs1.0.0 || mkdir -p Build/OBJECTS/tcs1.0.0
-	$(COPY_FILE) --parents $(SOURCES) $(DIST) Build/OBJECTS/tcs1.0.0/ && $(COPY_FILE) --parents kigManager.hpp utility/cdate.hpp db/mongo.hpp rtsp/rtspclient.hpp base.hpp peripheral/peripheral.hpp test/peripheralTester.hpp test/rtsptester.h test/dbtest.hpp Build/OBJECTS/tcs1.0.0/ && $(COPY_FILE) --parents kigManager.cpp utility/cdate.cpp db/mongo.cpp rtsp/rtspclient.cpp base.cpp main.cpp peripheral/peripheral.cpp test/peripheralTester.cpp test/rtsptester.cpp test/dbtest.cpp Build/OBJECTS/tcs1.0.0/ && (cd `dirname Build/OBJECTS/tcs1.0.0` && $(TAR) tcs1.0.0.tar tcs1.0.0 && $(COMPRESS) tcs1.0.0.tar) && $(MOVE) `dirname Build/OBJECTS/tcs1.0.0`/tcs1.0.0.tar.gz . && $(DEL_FILE) -r Build/OBJECTS/tcs1.0.0
+	$(COPY_FILE) --parents $(SOURCES) $(DIST) Build/OBJECTS/tcs1.0.0/ && $(COPY_FILE) --parents kigManager.hpp utility/cdate.hpp db/mongo.hpp rtsp/rtspclient.hpp base.hpp peripheral/peripheral.hpp test/peripheralTester.hpp test/rtsptester.h db/settings.hpp test/dbtest.hpp Build/OBJECTS/tcs1.0.0/ && $(COPY_FILE) --parents kigManager.cpp utility/cdate.cpp db/mongo.cpp rtsp/rtspclient.cpp base.cpp main.cpp peripheral/peripheral.cpp test/peripheralTester.cpp test/rtsptester.cpp db/settings.cpp test/dbtest.cpp Build/OBJECTS/tcs1.0.0/ && (cd `dirname Build/OBJECTS/tcs1.0.0` && $(TAR) tcs1.0.0.tar tcs1.0.0 && $(COMPRESS) tcs1.0.0.tar) && $(MOVE) `dirname Build/OBJECTS/tcs1.0.0`/tcs1.0.0.tar.gz . && $(DEL_FILE) -r Build/OBJECTS/tcs1.0.0
 
 
 clean:compiler_clean 
@@ -713,7 +718,8 @@ Build/OBJECTS/kigManager.o: kigManager.cpp kigManager.hpp \
 		/usr/include/qt5/QtCore/QProcess \
 		/usr/include/qt5/QtCore/qprocess.h \
 		/usr/include/qt5/QtCore/QThread \
-		/usr/include/qt5/QtCore/qthread.h
+		/usr/include/qt5/QtCore/qthread.h \
+		db/settings.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Build/OBJECTS/kigManager.o kigManager.cpp
 
 Build/OBJECTS/cdate.o: utility/cdate.cpp utility/cdate.hpp
@@ -811,7 +817,8 @@ Build/OBJECTS/rtspclient.o: rtsp/rtspclient.cpp rtsp/rtspclient.hpp \
 		/usr/include/qt5/QtCore/qset.h \
 		/usr/include/qt5/QtCore/qcontiguouscache.h \
 		/usr/include/qt5/QtCore/QThread \
-		/usr/include/qt5/QtCore/qthread.h
+		/usr/include/qt5/QtCore/qthread.h \
+		db/settings.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Build/OBJECTS/rtspclient.o rtsp/rtspclient.cpp
 
 Build/OBJECTS/base.o: base.cpp base.hpp
@@ -1125,6 +1132,9 @@ Build/OBJECTS/rtsptester.o: test/rtsptester.cpp test/rtsptester.h \
 		/usr/include/qt5/QtCore/QThread \
 		/usr/include/qt5/QtCore/qthread.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Build/OBJECTS/rtsptester.o test/rtsptester.cpp
+
+Build/OBJECTS/settings.o: db/settings.cpp db/settings.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Build/OBJECTS/settings.o db/settings.cpp
 
 Build/OBJECTS/dbtest.o: test/dbtest.cpp test/dbtest.hpp \
 		db/mongo.hpp \

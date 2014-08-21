@@ -8,12 +8,14 @@ TARGET = tcs
 INCLUDEPATH += . peripheral test rtsp db utlity
 INCLUDEPATH += /usr/include/boost/
 LIBS += -lboost_thread -lboost_system -lmongoclient 
+CONFIG   += c++11
+
 # Input
 HEADERS += kigManager.hpp utility/cdate.hpp db/mongo.hpp rtsp/rtspclient.hpp base.hpp peripheral/peripheral.hpp test/peripheralTester.hpp \
-    test/rtsptester.h \
+    test/rtsptester.h db/settings.hpp \
     test/dbtest.hpp
 SOURCES += kigManager.cpp utility/cdate.cpp db/mongo.cpp rtsp/rtspclient.cpp base.cpp main.cpp peripheral/peripheral.cpp test/peripheralTester.cpp \
-    test/rtsptester.cpp \
+    test/rtsptester.cpp db/settings.cpp \
     test/dbtest.cpp
 
 RCC_DIR = "Build/RCC"
