@@ -9,10 +9,10 @@ INCLUDEPATH += . peripheral test rtsp db utlity
 INCLUDEPATH += /usr/include/boost/
 LIBS += -lboost_thread -lboost_system -lmongoclient 
 # Input
-HEADERS += utility/cdate.hpp db/mongo.hpp rtsp/rtspclient.hpp base.hpp peripheral/peripheral.hpp test/peripheralTester.hpp \
+HEADERS += kigManager.hpp utility/cdate.hpp db/mongo.hpp rtsp/rtspclient.hpp base.hpp peripheral/peripheral.hpp test/peripheralTester.hpp \
     test/rtsptester.h \
     test/dbtest.hpp
-SOURCES += utility/cdate.cpp db/mongo.cpp rtsp/rtspclient.cpp base.cpp main.cpp peripheral/peripheral.cpp test/peripheralTester.cpp \
+SOURCES += kigManager.cpp utility/cdate.cpp db/mongo.cpp rtsp/rtspclient.cpp base.cpp main.cpp peripheral/peripheral.cpp test/peripheralTester.cpp \
     test/rtsptester.cpp \
     test/dbtest.cpp
 

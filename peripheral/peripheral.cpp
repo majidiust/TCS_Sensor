@@ -69,7 +69,7 @@ void Peripheral::receiver()
         asio::read(*m_serial, asio::buffer(crc, 1));
         asio::read(*m_serial, asio::buffer(eot, 1));
 
-        //         cout << getHex(sot[0]) << ":" << getHex(id[0]) << " : " << getHex(cmd[0]) << " : " << getHex(s[0]) << endl;
+        cout << getHex(sot[0]) << ":" << getHex(id[0]) << " : " << getHex(cmd[0]) << " : " << getHex(s[0]) << endl;
 
         m_commandEvent((int)cmd[0]);
     }

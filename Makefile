@@ -45,7 +45,8 @@ OBJECTS_DIR   = Build/OBJECTS/
 
 ####### Files
 
-SOURCES       = utility/cdate.cpp \
+SOURCES       = kigManager.cpp \
+		utility/cdate.cpp \
 		db/mongo.cpp \
 		rtsp/rtspclient.cpp \
 		base.cpp \
@@ -53,9 +54,11 @@ SOURCES       = utility/cdate.cpp \
 		peripheral/peripheral.cpp \
 		test/peripheralTester.cpp \
 		test/rtsptester.cpp \
-		test/dbtest.cpp Build/MOC/moc_rtspclient.cpp \
+		test/dbtest.cpp Build/MOC/moc_kigManager.cpp \
+		Build/MOC/moc_rtspclient.cpp \
 		Build/MOC/moc_rtsptester.cpp
-OBJECTS       = Build/OBJECTS/cdate.o \
+OBJECTS       = Build/OBJECTS/kigManager.o \
+		Build/OBJECTS/cdate.o \
 		Build/OBJECTS/mongo.o \
 		Build/OBJECTS/rtspclient.o \
 		Build/OBJECTS/base.o \
@@ -64,6 +67,7 @@ OBJECTS       = Build/OBJECTS/cdate.o \
 		Build/OBJECTS/peripheralTester.o \
 		Build/OBJECTS/rtsptester.o \
 		Build/OBJECTS/dbtest.o \
+		Build/OBJECTS/moc_kigManager.o \
 		Build/OBJECTS/moc_rtspclient.o \
 		Build/OBJECTS/moc_rtsptester.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -289,7 +293,7 @@ qmake_all: FORCE
 
 dist: 
 	@test -d Build/OBJECTS/tcs1.0.0 || mkdir -p Build/OBJECTS/tcs1.0.0
-	$(COPY_FILE) --parents $(SOURCES) $(DIST) Build/OBJECTS/tcs1.0.0/ && $(COPY_FILE) --parents utility/cdate.hpp db/mongo.hpp rtsp/rtspclient.hpp base.hpp peripheral/peripheral.hpp test/peripheralTester.hpp test/rtsptester.h test/dbtest.hpp Build/OBJECTS/tcs1.0.0/ && $(COPY_FILE) --parents utility/cdate.cpp db/mongo.cpp rtsp/rtspclient.cpp base.cpp main.cpp peripheral/peripheral.cpp test/peripheralTester.cpp test/rtsptester.cpp test/dbtest.cpp Build/OBJECTS/tcs1.0.0/ && (cd `dirname Build/OBJECTS/tcs1.0.0` && $(TAR) tcs1.0.0.tar tcs1.0.0 && $(COMPRESS) tcs1.0.0.tar) && $(MOVE) `dirname Build/OBJECTS/tcs1.0.0`/tcs1.0.0.tar.gz . && $(DEL_FILE) -r Build/OBJECTS/tcs1.0.0
+	$(COPY_FILE) --parents $(SOURCES) $(DIST) Build/OBJECTS/tcs1.0.0/ && $(COPY_FILE) --parents kigManager.hpp utility/cdate.hpp db/mongo.hpp rtsp/rtspclient.hpp base.hpp peripheral/peripheral.hpp test/peripheralTester.hpp test/rtsptester.h test/dbtest.hpp Build/OBJECTS/tcs1.0.0/ && $(COPY_FILE) --parents kigManager.cpp utility/cdate.cpp db/mongo.cpp rtsp/rtspclient.cpp base.cpp main.cpp peripheral/peripheral.cpp test/peripheralTester.cpp test/rtsptester.cpp test/dbtest.cpp Build/OBJECTS/tcs1.0.0/ && (cd `dirname Build/OBJECTS/tcs1.0.0` && $(TAR) tcs1.0.0.tar tcs1.0.0 && $(COMPRESS) tcs1.0.0.tar) && $(MOVE) `dirname Build/OBJECTS/tcs1.0.0`/tcs1.0.0.tar.gz . && $(DEL_FILE) -r Build/OBJECTS/tcs1.0.0
 
 
 clean:compiler_clean 
@@ -312,9 +316,109 @@ check: first
 
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: Build/MOC/moc_rtspclient.cpp Build/MOC/moc_rtsptester.cpp
+compiler_moc_header_make_all: Build/MOC/moc_kigManager.cpp Build/MOC/moc_rtspclient.cpp Build/MOC/moc_rtsptester.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) Build/MOC/moc_rtspclient.cpp Build/MOC/moc_rtsptester.cpp
+	-$(DEL_FILE) Build/MOC/moc_kigManager.cpp Build/MOC/moc_rtspclient.cpp Build/MOC/moc_rtsptester.cpp
+Build/MOC/moc_kigManager.cpp: /usr/include/qt5/QtCore/QObject \
+		/usr/include/qt5/QtCore/qobject.h \
+		/usr/include/qt5/QtCore/qobjectdefs.h \
+		/usr/include/qt5/QtCore/qnamespace.h \
+		/usr/include/qt5/QtCore/qglobal.h \
+		/usr/include/qt5/QtCore/qconfig.h \
+		/usr/include/qt5/QtCore/qfeatures.h \
+		/usr/include/qt5/QtCore/qsystemdetection.h \
+		/usr/include/qt5/QtCore/qprocessordetection.h \
+		/usr/include/qt5/QtCore/qcompilerdetection.h \
+		/usr/include/qt5/QtCore/qglobalstatic.h \
+		/usr/include/qt5/QtCore/qatomic.h \
+		/usr/include/qt5/QtCore/qbasicatomic.h \
+		/usr/include/qt5/QtCore/qatomic_bootstrap.h \
+		/usr/include/qt5/QtCore/qgenericatomic.h \
+		/usr/include/qt5/QtCore/qatomic_msvc.h \
+		/usr/include/qt5/QtCore/qatomic_integrity.h \
+		/usr/include/qt5/QtCore/qoldbasicatomic.h \
+		/usr/include/qt5/QtCore/qatomic_vxworks.h \
+		/usr/include/qt5/QtCore/qatomic_power.h \
+		/usr/include/qt5/QtCore/qatomic_alpha.h \
+		/usr/include/qt5/QtCore/qatomic_armv7.h \
+		/usr/include/qt5/QtCore/qatomic_armv6.h \
+		/usr/include/qt5/QtCore/qatomic_armv5.h \
+		/usr/include/qt5/QtCore/qatomic_bfin.h \
+		/usr/include/qt5/QtCore/qatomic_ia64.h \
+		/usr/include/qt5/QtCore/qatomic_mips.h \
+		/usr/include/qt5/QtCore/qatomic_s390.h \
+		/usr/include/qt5/QtCore/qatomic_sh4a.h \
+		/usr/include/qt5/QtCore/qatomic_sparc.h \
+		/usr/include/qt5/QtCore/qatomic_gcc.h \
+		/usr/include/qt5/QtCore/qatomic_x86.h \
+		/usr/include/qt5/QtCore/qatomic_cxx11.h \
+		/usr/include/qt5/QtCore/qatomic_unix.h \
+		/usr/include/qt5/QtCore/qmutex.h \
+		/usr/include/qt5/QtCore/qlogging.h \
+		/usr/include/qt5/QtCore/qflags.h \
+		/usr/include/qt5/QtCore/qtypeinfo.h \
+		/usr/include/qt5/QtCore/qtypetraits.h \
+		/usr/include/qt5/QtCore/qsysinfo.h \
+		/usr/include/qt5/QtCore/qobjectdefs_impl.h \
+		/usr/include/qt5/QtCore/qstring.h \
+		/usr/include/qt5/QtCore/qchar.h \
+		/usr/include/qt5/QtCore/qbytearray.h \
+		/usr/include/qt5/QtCore/qrefcount.h \
+		/usr/include/qt5/QtCore/qarraydata.h \
+		/usr/include/qt5/QtCore/qstringbuilder.h \
+		/usr/include/qt5/QtCore/qlist.h \
+		/usr/include/qt5/QtCore/qalgorithms.h \
+		/usr/include/qt5/QtCore/qiterator.h \
+		/usr/include/qt5/QtCore/qcoreevent.h \
+		/usr/include/qt5/QtCore/qscopedpointer.h \
+		/usr/include/qt5/QtCore/qmetatype.h \
+		/usr/include/qt5/QtCore/qvarlengtharray.h \
+		/usr/include/qt5/QtCore/qcontainerfwd.h \
+		/usr/include/qt5/QtCore/qisenum.h \
+		/usr/include/qt5/QtCore/qobject_impl.h \
+		db/mongo.hpp \
+		/usr/include/qt5/QtCore/QString \
+		/usr/include/qt5/QtCore/QDebug \
+		/usr/include/qt5/QtCore/qdebug.h \
+		/usr/include/qt5/QtCore/qhash.h \
+		/usr/include/qt5/QtCore/qpair.h \
+		/usr/include/qt5/QtCore/qmap.h \
+		/usr/include/qt5/QtCore/qtextstream.h \
+		/usr/include/qt5/QtCore/qiodevice.h \
+		/usr/include/qt5/QtCore/qlocale.h \
+		/usr/include/qt5/QtCore/qvariant.h \
+		/usr/include/qt5/QtCore/qstringlist.h \
+		/usr/include/qt5/QtCore/qdatastream.h \
+		/usr/include/qt5/QtCore/qregexp.h \
+		/usr/include/qt5/QtCore/qstringmatcher.h \
+		/usr/include/qt5/QtCore/qshareddata.h \
+		/usr/include/qt5/QtCore/qvector.h \
+		/usr/include/qt5/QtCore/qpoint.h \
+		/usr/include/qt5/QtCore/qset.h \
+		/usr/include/qt5/QtCore/qcontiguouscache.h \
+		/usr/include/qt5/QtCore/QDate \
+		/usr/include/qt5/QtCore/qdatetime.h \
+		/usr/include/qt5/QtCore/qsharedpointer.h \
+		/usr/include/qt5/QtCore/qsharedpointer_impl.h \
+		utility/cdate.hpp \
+		peripheral/peripheral.hpp \
+		base.hpp \
+		rtsp/rtspclient.hpp \
+		/usr/include/qt5/QtCore/QDir \
+		/usr/include/qt5/QtCore/qdir.h \
+		/usr/include/qt5/QtCore/qfileinfo.h \
+		/usr/include/qt5/QtCore/qfile.h \
+		/usr/include/qt5/QtCore/qfiledevice.h \
+		/usr/include/qt5/QtCore/QTimer \
+		/usr/include/qt5/QtCore/qtimer.h \
+		/usr/include/qt5/QtCore/qbasictimer.h \
+		/usr/include/qt5/QtCore/QProcess \
+		/usr/include/qt5/QtCore/qprocess.h \
+		/usr/include/qt5/QtCore/QThread \
+		/usr/include/qt5/QtCore/qthread.h \
+		kigManager.hpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) $(INCPATH) -I/usr/include/c++/4.8 -I/usr/include/x86_64-linux-gnu/c++/4.8 -I/usr/include/c++/4.8/backward -I/usr/lib/gcc/x86_64-linux-gnu/4.8/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include kigManager.hpp -o Build/MOC/moc_kigManager.cpp
+
 Build/MOC/moc_rtspclient.cpp: base.hpp \
 		/usr/include/qt5/QtCore/QObject \
 		/usr/include/qt5/QtCore/qobject.h \
@@ -512,13 +616,11 @@ compiler_clean: compiler_moc_header_clean
 
 ####### Compile
 
-Build/OBJECTS/cdate.o: utility/cdate.cpp utility/cdate.hpp
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Build/OBJECTS/cdate.o utility/cdate.cpp
-
-Build/OBJECTS/mongo.o: db/mongo.cpp db/mongo.hpp \
-		/usr/include/qt5/QtCore/QString \
-		/usr/include/qt5/QtCore/qstring.h \
-		/usr/include/qt5/QtCore/qchar.h \
+Build/OBJECTS/kigManager.o: kigManager.cpp kigManager.hpp \
+		/usr/include/qt5/QtCore/QObject \
+		/usr/include/qt5/QtCore/qobject.h \
+		/usr/include/qt5/QtCore/qobjectdefs.h \
+		/usr/include/qt5/QtCore/qnamespace.h \
 		/usr/include/qt5/QtCore/qglobal.h \
 		/usr/include/qt5/QtCore/qconfig.h \
 		/usr/include/qt5/QtCore/qfeatures.h \
@@ -555,24 +657,16 @@ Build/OBJECTS/mongo.o: db/mongo.cpp db/mongo.hpp \
 		/usr/include/qt5/QtCore/qtypeinfo.h \
 		/usr/include/qt5/QtCore/qtypetraits.h \
 		/usr/include/qt5/QtCore/qsysinfo.h \
+		/usr/include/qt5/QtCore/qobjectdefs_impl.h \
+		/usr/include/qt5/QtCore/qstring.h \
+		/usr/include/qt5/QtCore/qchar.h \
 		/usr/include/qt5/QtCore/qbytearray.h \
 		/usr/include/qt5/QtCore/qrefcount.h \
-		/usr/include/qt5/QtCore/qnamespace.h \
 		/usr/include/qt5/QtCore/qarraydata.h \
 		/usr/include/qt5/QtCore/qstringbuilder.h \
-		/usr/include/qt5/QtCore/QDebug \
-		/usr/include/qt5/QtCore/qdebug.h \
-		/usr/include/qt5/QtCore/qalgorithms.h \
-		/usr/include/qt5/QtCore/qhash.h \
-		/usr/include/qt5/QtCore/qiterator.h \
 		/usr/include/qt5/QtCore/qlist.h \
-		/usr/include/qt5/QtCore/qpair.h \
-		/usr/include/qt5/QtCore/qmap.h \
-		/usr/include/qt5/QtCore/qtextstream.h \
-		/usr/include/qt5/QtCore/qiodevice.h \
-		/usr/include/qt5/QtCore/qobject.h \
-		/usr/include/qt5/QtCore/qobjectdefs.h \
-		/usr/include/qt5/QtCore/qobjectdefs_impl.h \
+		/usr/include/qt5/QtCore/qalgorithms.h \
+		/usr/include/qt5/QtCore/qiterator.h \
 		/usr/include/qt5/QtCore/qcoreevent.h \
 		/usr/include/qt5/QtCore/qscopedpointer.h \
 		/usr/include/qt5/QtCore/qmetatype.h \
@@ -580,6 +674,15 @@ Build/OBJECTS/mongo.o: db/mongo.cpp db/mongo.hpp \
 		/usr/include/qt5/QtCore/qcontainerfwd.h \
 		/usr/include/qt5/QtCore/qisenum.h \
 		/usr/include/qt5/QtCore/qobject_impl.h \
+		db/mongo.hpp \
+		/usr/include/qt5/QtCore/QString \
+		/usr/include/qt5/QtCore/QDebug \
+		/usr/include/qt5/QtCore/qdebug.h \
+		/usr/include/qt5/QtCore/qhash.h \
+		/usr/include/qt5/QtCore/qpair.h \
+		/usr/include/qt5/QtCore/qmap.h \
+		/usr/include/qt5/QtCore/qtextstream.h \
+		/usr/include/qt5/QtCore/qiodevice.h \
 		/usr/include/qt5/QtCore/qlocale.h \
 		/usr/include/qt5/QtCore/qvariant.h \
 		/usr/include/qt5/QtCore/qstringlist.h \
@@ -591,7 +694,32 @@ Build/OBJECTS/mongo.o: db/mongo.cpp db/mongo.hpp \
 		/usr/include/qt5/QtCore/qpoint.h \
 		/usr/include/qt5/QtCore/qset.h \
 		/usr/include/qt5/QtCore/qcontiguouscache.h \
-		utility/cdate.hpp
+		/usr/include/qt5/QtCore/QDate \
+		/usr/include/qt5/QtCore/qdatetime.h \
+		/usr/include/qt5/QtCore/qsharedpointer.h \
+		/usr/include/qt5/QtCore/qsharedpointer_impl.h \
+		utility/cdate.hpp \
+		peripheral/peripheral.hpp \
+		base.hpp \
+		rtsp/rtspclient.hpp \
+		/usr/include/qt5/QtCore/QDir \
+		/usr/include/qt5/QtCore/qdir.h \
+		/usr/include/qt5/QtCore/qfileinfo.h \
+		/usr/include/qt5/QtCore/qfile.h \
+		/usr/include/qt5/QtCore/qfiledevice.h \
+		/usr/include/qt5/QtCore/QTimer \
+		/usr/include/qt5/QtCore/qtimer.h \
+		/usr/include/qt5/QtCore/qbasictimer.h \
+		/usr/include/qt5/QtCore/QProcess \
+		/usr/include/qt5/QtCore/qprocess.h \
+		/usr/include/qt5/QtCore/QThread \
+		/usr/include/qt5/QtCore/qthread.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Build/OBJECTS/kigManager.o kigManager.cpp
+
+Build/OBJECTS/cdate.o: utility/cdate.cpp utility/cdate.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Build/OBJECTS/cdate.o utility/cdate.cpp
+
+Build/OBJECTS/mongo.o: db/mongo.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Build/OBJECTS/mongo.o db/mongo.cpp
 
 Build/OBJECTS/rtspclient.o: rtsp/rtspclient.cpp rtsp/rtspclient.hpp \
@@ -881,20 +1009,19 @@ Build/OBJECTS/main.o: main.cpp /usr/include/qt5/QtCore/QtCore \
 		/usr/include/qt5/QtCore/qtimezone.h \
 		/usr/include/qt5/QtCore/qxmlstream.h \
 		/usr/include/qt5/QtCore/qtcoreversion.h \
-		test/peripheralTester.hpp \
+		kigManager.hpp \
+		db/mongo.hpp \
+		/usr/include/qt5/QtCore/QString \
+		/usr/include/qt5/QtCore/QDebug \
+		/usr/include/qt5/QtCore/QDate \
+		utility/cdate.hpp \
 		peripheral/peripheral.hpp \
 		base.hpp \
-		test/rtsptester.h \
-		/usr/include/qt5/QtCore/QDebug \
 		rtsp/rtspclient.hpp \
 		/usr/include/qt5/QtCore/QDir \
 		/usr/include/qt5/QtCore/QTimer \
-		/usr/include/qt5/QtCore/QString \
 		/usr/include/qt5/QtCore/QProcess \
-		/usr/include/qt5/QtCore/QThread \
-		test/dbtest.hpp \
-		db/mongo.hpp \
-		utility/cdate.hpp
+		/usr/include/qt5/QtCore/QThread
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Build/OBJECTS/main.o main.cpp
 
 Build/OBJECTS/peripheral.o: peripheral/peripheral.cpp peripheral/peripheral.hpp \
@@ -1076,8 +1203,15 @@ Build/OBJECTS/dbtest.o: test/dbtest.cpp test/dbtest.hpp \
 		/usr/include/qt5/QtCore/qpoint.h \
 		/usr/include/qt5/QtCore/qset.h \
 		/usr/include/qt5/QtCore/qcontiguouscache.h \
+		/usr/include/qt5/QtCore/QDate \
+		/usr/include/qt5/QtCore/qdatetime.h \
+		/usr/include/qt5/QtCore/qsharedpointer.h \
+		/usr/include/qt5/QtCore/qsharedpointer_impl.h \
 		utility/cdate.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Build/OBJECTS/dbtest.o test/dbtest.cpp
+
+Build/OBJECTS/moc_kigManager.o: Build/MOC/moc_kigManager.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Build/OBJECTS/moc_kigManager.o Build/MOC/moc_kigManager.cpp
 
 Build/OBJECTS/moc_rtspclient.o: Build/MOC/moc_rtspclient.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Build/OBJECTS/moc_rtspclient.o Build/MOC/moc_rtspclient.cpp

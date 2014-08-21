@@ -3,8 +3,8 @@
 RTSPClient::RTSPClient(QString recordId, QString rtspUrl, QString fps, QObject *parent){
 
     m_program = "ffmpeg";
-    m_defultThr = 4000;
-    m_root = "/home/majid/blob";
+    m_defultThr = 20000;
+    m_root = "/home/agent/blob";
     QDir dir(m_root);
     if (!dir.exists()){
       dir.mkpath(".");
@@ -47,4 +47,5 @@ void RTSPClient::readyReadOutput()
 
 void RTSPClient::run(){
     startProcess();
+//    stopProcessDelayed();
 }
