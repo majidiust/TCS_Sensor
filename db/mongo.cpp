@@ -60,7 +60,8 @@ QString MongoDB::insertNewTraffic(){
     QString date = QTime::currentTime().toString();
     qDebug() << "Jalali date is : " << QString::fromStdString(jdate);
     qDebug() << "time is : " << date;
-    mongo::BSONObj obj =  mongo::BSONObjBuilder().genOID().append("date" , jdate).append("time", date.toStdString()).obj();
+    mongo::BSONObj obj =  mongo::BSONObjBuilder().genOID().append("date" , jdate).append("time", date.toStdString())
+            .append("tics", QString::number(QDateTime::currentMSecsSinceEpoch()).toStdString()).obj();
     m_connection.insert(getCollectionName(), obj);
     qDebug() << "object id is : " << QString::fromStdString(obj["_id"]).split(":")[1] << endl;
     return QString::fromStdString(obj["_id"]).split(":")[1];
