@@ -1,8 +1,10 @@
 #include "kigManager.hpp"
 #include "settings.hpp"
+#include "Libs/CarPlateRecognition.h"
 
 KIGManager::KIGManager(){
     std::cout << "Kaveh industrial group control traffic system" << endl;
+    m_root = "/home/agent/TCS_Services/tcs_services/public/www/";
 }
 
 void KIGManager::start(){
@@ -68,6 +70,7 @@ void KIGManager::saveEventBegin(){
     QString id = m_db.insertNewTraffic();
     std::cout << id.toStdString() << endl;
     m_client = new RTSPClient(id, QString::fromStdString(Settings::RTSPUrl), QString::fromStdString(Settings::FPS));
+    connect(m_client, SIGNAL(processStopped(QString)), this, SLOT(OnStopRTSP(QString)));
     m_client->start();
 }
 
@@ -82,4 +85,33 @@ void KIGManager::saveEventOnDemand(){
     m_client = new RTSPClient(id, QString::fromStdString(Settings::RTSPUrl), QString::fromStdString(Settings::FPS));
     m_client->start();
     m_client->stopProcessDelayed();
+}
+
+void KIGManager::OnStopRTSP(QString id){
+    m_db.makeRecordValid(id);
+    boost::shared_ptr<boost::thread> detectorPlate = boost::shared_ptr<boost::thread>(new boost::thread(boost::bind(&KIGManager::plateDetectorHandler, this, id.toStdString())));
+}
+
+void KIGManager::plateDetectorHandler(string id){
+    DIR *dp;
+    CarPlateRecognition lpr;
+    dp = opendir((m_root + id).c_str());
+    struct dirent *dirp;
+    while(dirp = readdir(dp)){
+        std::string imageName = m_root + dirp->d_name;
+        Mat img = imread(imageName);
+        if(img.empty())
+            continue;
+        vector<Plate> plates = lpr.PlateDetognitionStandard(img, Mat());
+        bool isDetected = false;
+        for(int i = 0 ; i < plates.size() ; i++){
+            QString persian1 = QString::fromStdWString(plates[i].plateStringShow);
+            QString english =  QString::fromStdString(plates[i].plateString0);
+            QString persian2 = QString::fromStdWString(plates[i].plateString);
+            m_db.insertPlateForRecord(QString::fromStdString(id), english, persian1, persian2, QString::fromStdString(imageName));
+            isDetected = true;
+        }
+        if(isDetected)
+            break;
+    }
 }

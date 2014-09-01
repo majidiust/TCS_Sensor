@@ -15,6 +15,8 @@ public:
     MongoDB();
     void connectToDB(QString dbUrl = "localhost");
     QString insertNewTraffic();
+    void makeRecordValid(QString id);
+    void insertPlateForRecord(QString is,QString englishPlate, QString persianPlate1, QString persianPlate2,QString image);
     void closeConnection();
     std::string getCollectionName();
     std::string getSettingCollectionName();

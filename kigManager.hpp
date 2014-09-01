@@ -20,8 +20,15 @@ class KIGManager: public QObject
         void 	saveEventEnd();
         void    saveEventOnDemand();
         void	tryOpenPort();
+
+        void    plateDetectorHandler(std::string id);
+
+public slots:
+        void    OnStopRTSP(QString id);
+
     private:    
         RTSPClient *m_client;
+        std::string m_root;
         MongoDB m_db;
         Peripheral *m_peripheral;
         Peripheral::PeripheralConnection m_connection;

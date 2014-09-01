@@ -27,13 +27,14 @@ public slots:
     void run();
 
 signals:
-    void processStopped();
+    void processStopped(QString id);
     void processStarted();
 private:
     QProcess *m_process;
     QString m_root;
     QString m_program;
     QStringList m_argument;
+    QString m_id;
 };
 
 #endif

@@ -10,6 +10,13 @@ INCLUDEPATH += /usr/include/boost/
 LIBS += -lboost_thread -lboost_system -lmongoclient 
 CONFIG   += c++11
 
+# Plate detection
+INCLUDEPATH += Libs
+DEPENDPATH  += Libs
+CONFIG += link_pkgconfig
+PKGCONFIG += opencv
+LIBS += -lopencv_objdetect -lopencv_features2d -lopencv_imgproc -lopencv_highgui -lopencv_core Libs/CarPlateRecognition.o  Libs/Plate.o Libs/CameraParams.o Libs/Feature.o
+
 # Input
 HEADERS += kigManager.hpp utility/cdate.hpp db/mongo.hpp rtsp/rtspclient.hpp base.hpp peripheral/peripheral.hpp test/peripheralTester.hpp \
     test/rtsptester.h db/settings.hpp \

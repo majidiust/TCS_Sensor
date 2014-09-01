@@ -1,0 +1,2394 @@
+g++ -c -m64 -pipe -O2 -std=c++0x -Wall -W -D_REENTRANT -fPIE -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I. -I. -Iperipheral -Itest -Irtsp -Idb -Iutlity -I/usr/include/boost -ILibs -I/usr/include/opencv -I/usr/include/qt5 -I/usr/include/qt5/QtSql -I/usr/include/qt5/QtNetwork -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -IBuild/MOC -o Build/OBJECTS/mongo.o db/mongo.cpp
+In file included from db/mongo.hpp:11:0,
+                 from db/mongo.cpp:1:
+./utility/cdate.hpp:19:86: warning: type qualifiers ignored on function return type [-Wignored-qualifiers]
+     static const bool IsRangeValidG(const int gYear, const int gMonth, const int gDay);
+                                                                                      ^
+./utility/cdate.hpp:20:86: warning: type qualifiers ignored on function return type [-Wignored-qualifiers]
+     static const bool IsRangeValidJ(const int jYear, const int jMonth, const int jDay);
+                                                                                      ^
+./utility/cdate.hpp:21:82: warning: type qualifiers ignored on function return type [-Wignored-qualifiers]
+     static const int DayOfYearG(const int gYear, const int gMonth, const int gDay);
+                                                                                  ^
+./utility/cdate.hpp:22:82: warning: type qualifiers ignored on function return type [-Wignored-qualifiers]
+     static const int DayOfYearJ(const int jYear, const int jMonth, const int jDay);
+                                                                                  ^
+./utility/cdate.hpp:23:50: warning: type qualifiers ignored on function return type [-Wignored-qualifiers]
+     static const bool IsLeapYearG(const int gYear);
+                                                  ^
+./utility/cdate.hpp:24:50: warning: type qualifiers ignored on function return type [-Wignored-qualifiers]
+     static const bool IsLeapYearJ(const int jYear);
+                                                  ^
+db/mongo.cpp: In member function ‘void MongoDB::loadSettings()’:
+db/mongo.cpp:41:55: warning: the address of ‘QTextStream& endl(QTextStream&)’ will always evaluate as ‘true’ [-Waddress]
+         std::cout << "Settings inited in database" << endl;
+                                                       ^
+db/mongo.cpp: In member function ‘QString MongoDB::insertNewTraffic()’:
+db/mongo.cpp:70:41: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for(int i = 11 ; i < tmpId.size() - 2 ; i++){
+                                         ^
+db/mongo.cpp:74:40: warning: the address of ‘QTextStream& endl(QTextStream&)’ will always evaluate as ‘true’ [-Waddress]
+     std::cout <<  "Id is : " << id  << endl;
+                                        ^
+db/mongo.cpp:69:9: warning: unused variable ‘state’ [-Wunused-variable]
+     int state = 0 ;
+         ^
+db/mongo.cpp: In member function ‘void MongoDB::insertPlateForRecord(QString, QString, QString, QString, QString)’:
+db/mongo.cpp:84:35: error: no match for ‘operator<<’ (operand types are ‘const char [13]’ and ‘std::string {aka std::basic_string<char>}’)
+             append("englishPlate" << englishPlate.toStdString()).
+                                   ^
+db/mongo.cpp:84:35: note: candidates are:
+In file included from /usr/include/qt5/QtCore/qstring.h:45:0,
+                 from /usr/include/qt5/QtCore/QString:1,
+                 from db/mongo.hpp:5,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qchar.h:521:28: note: QDataStream& operator<<(QDataStream&, QChar)
+ Q_CORE_EXPORT QDataStream &operator<<(QDataStream &, QChar);
+                            ^
+/usr/include/qt5/QtCore/qchar.h:521:28: note:   no known conversion for argument 1 from ‘const char [13]’ to ‘QDataStream&’
+In file included from /usr/include/qt5/QtCore/qstring.h:46:0,
+                 from /usr/include/qt5/QtCore/QString:1,
+                 from db/mongo.hpp:5,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qbytearray.h:607:28: note: QDataStream& operator<<(QDataStream&, const QByteArray&)
+ Q_CORE_EXPORT QDataStream &operator<<(QDataStream &, const QByteArray &);
+                            ^
+/usr/include/qt5/QtCore/qbytearray.h:607:28: note:   no known conversion for argument 1 from ‘const char [13]’ to ‘QDataStream&’
+In file included from /usr/include/qt5/QtCore/QString:1:0,
+                 from db/mongo.hpp:5,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qstring.h:1173:28: note: QDataStream& operator<<(QDataStream&, const QString&)
+ Q_CORE_EXPORT QDataStream &operator<<(QDataStream &, const QString &);
+                            ^
+/usr/include/qt5/QtCore/qstring.h:1173:28: note:   no known conversion for argument 1 from ‘const char [13]’ to ‘QDataStream&’
+In file included from /usr/include/qt5/QtCore/qiodevice.h:47:0,
+                 from /usr/include/qt5/QtCore/qtextstream.h:45,
+                 from /usr/include/qt5/QtCore/qdebug.h:50,
+                 from /usr/include/qt5/QtCore/QDebug:1,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qobject.h:549:22: note: QDebug operator<<(QDebug, const QObject*)
+ Q_CORE_EXPORT QDebug operator<<(QDebug, const QObject *);
+                      ^
+/usr/include/qt5/QtCore/qobject.h:549:22: note:   no known conversion for argument 1 from ‘const char [13]’ to ‘QDebug’
+In file included from /usr/include/qt5/QtCore/qtextstream.h:45:0,
+                 from /usr/include/qt5/QtCore/qdebug.h:50,
+                 from /usr/include/qt5/QtCore/QDebug:1,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qiodevice.h:174:22: note: QDebug operator<<(QDebug, QIODevice::OpenMode)
+ Q_CORE_EXPORT QDebug operator<<(QDebug debug, QIODevice::OpenMode modes);
+                      ^
+/usr/include/qt5/QtCore/qiodevice.h:174:22: note:   no known conversion for argument 1 from ‘const char [13]’ to ‘QDebug’
+In file included from /usr/include/qt5/QtCore/qstringlist.h:46:0,
+                 from /usr/include/qt5/QtCore/qvariant.h:52,
+                 from /usr/include/qt5/QtCore/qlocale.h:45,
+                 from /usr/include/qt5/QtCore/qtextstream.h:48,
+                 from /usr/include/qt5/QtCore/qdebug.h:50,
+                 from /usr/include/qt5/QtCore/QDebug:1,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qdatastream.h:246:14: note: template<class T> QDataStream& operator<<(QDataStream&, const QList<T>&)
+ QDataStream& operator<<(QDataStream& s, const QList<T>& l)
+              ^
+/usr/include/qt5/QtCore/qdatastream.h:246:14: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   cannot convert ‘"englishPlate"’ (type ‘const char [13]’) to type ‘QDataStream&’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/qt5/QtCore/qstringlist.h:46:0,
+                 from /usr/include/qt5/QtCore/qvariant.h:52,
+                 from /usr/include/qt5/QtCore/qlocale.h:45,
+                 from /usr/include/qt5/QtCore/qtextstream.h:48,
+                 from /usr/include/qt5/QtCore/qdebug.h:50,
+                 from /usr/include/qt5/QtCore/QDebug:1,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qdatastream.h:272:14: note: template<class T> QDataStream& operator<<(QDataStream&, const QLinkedList<T>&)
+ QDataStream& operator<<(QDataStream& s, const QLinkedList<T>& l)
+              ^
+/usr/include/qt5/QtCore/qdatastream.h:272:14: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   cannot convert ‘"englishPlate"’ (type ‘const char [13]’) to type ‘QDataStream&’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/qt5/QtCore/qstringlist.h:46:0,
+                 from /usr/include/qt5/QtCore/qvariant.h:52,
+                 from /usr/include/qt5/QtCore/qlocale.h:45,
+                 from /usr/include/qt5/QtCore/qtextstream.h:48,
+                 from /usr/include/qt5/QtCore/qdebug.h:50,
+                 from /usr/include/qt5/QtCore/QDebug:1,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qdatastream.h:297:14: note: template<class T> QDataStream& operator<<(QDataStream&, const QVector<T>&)
+ QDataStream& operator<<(QDataStream& s, const QVector<T>& v)
+              ^
+/usr/include/qt5/QtCore/qdatastream.h:297:14: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   cannot convert ‘"englishPlate"’ (type ‘const char [13]’) to type ‘QDataStream&’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/qt5/QtCore/qstringlist.h:46:0,
+                 from /usr/include/qt5/QtCore/qvariant.h:52,
+                 from /usr/include/qt5/QtCore/qlocale.h:45,
+                 from /usr/include/qt5/QtCore/qtextstream.h:48,
+                 from /usr/include/qt5/QtCore/qdebug.h:50,
+                 from /usr/include/qt5/QtCore/QDebug:1,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qdatastream.h:322:14: note: template<class T> QDataStream& operator<<(QDataStream&, const QSet<T>&)
+ QDataStream& operator<<(QDataStream &out, const QSet<T> &set)
+              ^
+/usr/include/qt5/QtCore/qdatastream.h:322:14: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   cannot convert ‘"englishPlate"’ (type ‘const char [13]’) to type ‘QDataStream&’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/qt5/QtCore/qstringlist.h:46:0,
+                 from /usr/include/qt5/QtCore/qvariant.h:52,
+                 from /usr/include/qt5/QtCore/qlocale.h:45,
+                 from /usr/include/qt5/QtCore/qtextstream.h:48,
+                 from /usr/include/qt5/QtCore/qdebug.h:50,
+                 from /usr/include/qt5/QtCore/QDebug:1,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qdatastream.h:361:35: note: template<class Key, class T> QDataStream& operator<<(QDataStream&, const QHash<Key, T>&)
+ Q_OUTOFLINE_TEMPLATE QDataStream &operator<<(QDataStream &out, const QHash<Key, T>& hash)
+                                   ^
+/usr/include/qt5/QtCore/qdatastream.h:361:35: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   cannot convert ‘"englishPlate"’ (type ‘const char [13]’) to type ‘QDataStream&’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/qt5/QtCore/qstringlist.h:46:0,
+                 from /usr/include/qt5/QtCore/qvariant.h:52,
+                 from /usr/include/qt5/QtCore/qlocale.h:45,
+                 from /usr/include/qt5/QtCore/qtextstream.h:48,
+                 from /usr/include/qt5/QtCore/qdebug.h:50,
+                 from /usr/include/qt5/QtCore/QDebug:1,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qdatastream.h:405:35: note: template<class Key, class T> QDataStream& operator<<(QDataStream&, const QMap<Key, T>&)
+ Q_OUTOFLINE_TEMPLATE QDataStream &operator<<(QDataStream &out, const QMap<Key, T> &map)
+                                   ^
+/usr/include/qt5/QtCore/qdatastream.h:405:35: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   cannot convert ‘"englishPlate"’ (type ‘const char [13]’) to type ‘QDataStream&’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/qt5/QtCore/qstringlist.h:46:0,
+                 from /usr/include/qt5/QtCore/qvariant.h:52,
+                 from /usr/include/qt5/QtCore/qlocale.h:45,
+                 from /usr/include/qt5/QtCore/qtextstream.h:48,
+                 from /usr/include/qt5/QtCore/qdebug.h:50,
+                 from /usr/include/qt5/QtCore/QDebug:1,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qdatastream.h:426:21: note: template<class T1, class T2> QDataStream& operator<<(QDataStream&, const QPair<T1, T2>&)
+ inline QDataStream& operator<<(QDataStream& s, const QPair<T1, T2>& p)
+                     ^
+/usr/include/qt5/QtCore/qdatastream.h:426:21: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   cannot convert ‘"englishPlate"’ (type ‘const char [13]’) to type ‘QDataStream&’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/qt5/QtCore/qstringlist.h:48:0,
+                 from /usr/include/qt5/QtCore/qvariant.h:52,
+                 from /usr/include/qt5/QtCore/qlocale.h:45,
+                 from /usr/include/qt5/QtCore/qtextstream.h:48,
+                 from /usr/include/qt5/QtCore/qdebug.h:50,
+                 from /usr/include/qt5/QtCore/QDebug:1,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qregexp.h:122:28: note: QDataStream& operator<<(QDataStream&, const QRegExp&)
+ Q_CORE_EXPORT QDataStream &operator<<(QDataStream &out, const QRegExp &regExp);
+                            ^
+/usr/include/qt5/QtCore/qregexp.h:122:28: note:   no known conversion for argument 1 from ‘const char [13]’ to ‘QDataStream&’
+/usr/include/qt5/QtCore/qregexp.h:127:22: note: QDebug operator<<(QDebug, const QRegExp&)
+ Q_CORE_EXPORT QDebug operator<<(QDebug, const QRegExp &);
+                      ^
+/usr/include/qt5/QtCore/qregexp.h:127:22: note:   no known conversion for argument 1 from ‘const char [13]’ to ‘QDebug’
+In file included from /usr/include/qt5/QtCore/qvariant.h:52:0,
+                 from /usr/include/qt5/QtCore/qlocale.h:45,
+                 from /usr/include/qt5/QtCore/qtextstream.h:48,
+                 from /usr/include/qt5/QtCore/qdebug.h:50,
+                 from /usr/include/qt5/QtCore/QDebug:1,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qstringlist.h:250:21: note: QDataStream& operator<<(QDataStream&, const QStringList&)
+ inline QDataStream &operator<<(QDataStream &out, const QStringList &list)
+                     ^
+/usr/include/qt5/QtCore/qstringlist.h:250:21: note:   no known conversion for argument 1 from ‘const char [13]’ to ‘QDataStream&’
+In file included from /usr/include/qt5/QtCore/qlocale.h:45:0,
+                 from /usr/include/qt5/QtCore/qtextstream.h:48,
+                 from /usr/include/qt5/QtCore/qdebug.h:50,
+                 from /usr/include/qt5/QtCore/QDebug:1,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qvariant.h:834:22: note: QDebug operator<<(QDebug, const QVariant&)
+ Q_CORE_EXPORT QDebug operator<<(QDebug, const QVariant &);
+                      ^
+/usr/include/qt5/QtCore/qvariant.h:834:22: note:   no known conversion for argument 1 from ‘const char [13]’ to ‘QDebug’
+/usr/include/qt5/QtCore/qvariant.h:537:28: note: QDataStream& operator<<(QDataStream&, const QVariant&)
+ Q_CORE_EXPORT QDataStream& operator<< (QDataStream& s, const QVariant& p);
+                            ^
+/usr/include/qt5/QtCore/qvariant.h:537:28: note:   no known conversion for argument 1 from ‘const char [13]’ to ‘QDataStream&’
+/usr/include/qt5/QtCore/qvariant.h:539:28: note: QDataStream& operator<<(QDataStream&, QVariant::Type)
+ Q_CORE_EXPORT QDataStream& operator<< (QDataStream& s, const QVariant::Type p);
+                            ^
+/usr/include/qt5/QtCore/qvariant.h:539:28: note:   no known conversion for argument 1 from ‘const char [13]’ to ‘QDataStream&’
+/usr/include/qt5/QtCore/qvariant.h:835:22: note: QDebug operator<<(QDebug, QVariant::Type)
+ Q_CORE_EXPORT QDebug operator<<(QDebug, const QVariant::Type);
+                      ^
+/usr/include/qt5/QtCore/qvariant.h:835:22: note:   no known conversion for argument 1 from ‘const char [13]’ to ‘QDebug’
+In file included from /usr/include/qt5/QtCore/qtextstream.h:48:0,
+                 from /usr/include/qt5/QtCore/qdebug.h:50,
+                 from /usr/include/qt5/QtCore/QDebug:1,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qlocale.h:966:28: note: QDataStream& operator<<(QDataStream&, const QLocale&)
+ Q_CORE_EXPORT QDataStream &operator<<(QDataStream &, const QLocale &);
+                            ^
+/usr/include/qt5/QtCore/qlocale.h:966:28: note:   no known conversion for argument 1 from ‘const char [13]’ to ‘QDataStream&’
+/usr/include/qt5/QtCore/qlocale.h:971:22: note: QDebug operator<<(QDebug, const QLocale&)
+ Q_CORE_EXPORT QDebug operator<<(QDebug, const QLocale &);
+                      ^
+/usr/include/qt5/QtCore/qlocale.h:971:22: note:   no known conversion for argument 1 from ‘const char [13]’ to ‘QDebug’
+In file included from /usr/include/qt5/QtCore/qdebug.h:50:0,
+                 from /usr/include/qt5/QtCore/QDebug:1,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qtextstream.h:228:21: note: QTextStream& operator<<(QTextStream&, QTextStreamFunction)
+ inline QTextStream &operator<<(QTextStream &s, QTextStreamFunction f)
+                     ^
+/usr/include/qt5/QtCore/qtextstream.h:228:21: note:   no known conversion for argument 1 from ‘const char [13]’ to ‘QTextStream&’
+/usr/include/qt5/QtCore/qtextstream.h:231:21: note: QTextStream& operator<<(QTextStream&, QTextStreamManipulator)
+ inline QTextStream &operator<<(QTextStream &s, QTextStreamManipulator m)
+                     ^
+/usr/include/qt5/QtCore/qtextstream.h:231:21: note:   no known conversion for argument 1 from ‘const char [13]’ to ‘QTextStream&’
+In file included from /usr/include/qt5/QtCore/QDebug:1:0,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qdebug.h:172:15: note: template<class T> QDebug operator<<(QDebug, const QList<T>&)
+ inline QDebug operator<<(QDebug debug, const QList<T> &list)
+               ^
+/usr/include/qt5/QtCore/qdebug.h:172:15: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   cannot convert ‘"englishPlate"’ (type ‘const char [13]’) to type ‘QDebug’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/qt5/QtCore/QDebug:1:0,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qdebug.h:190:15: note: template<class T> QDebug operator<<(QDebug, const QVector<T>&)
+ inline QDebug operator<<(QDebug debug, const QVector<T> &vec)
+               ^
+/usr/include/qt5/QtCore/qdebug.h:190:15: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   cannot convert ‘"englishPlate"’ (type ‘const char [13]’) to type ‘QDebug’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/qt5/QtCore/QDebug:1:0,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qdebug.h:202:15: note: template<class aKey, class aT> QDebug operator<<(QDebug, const QMap<Key, T>&)
+ inline QDebug operator<<(QDebug debug, const QMap<aKey, aT> &map)
+               ^
+/usr/include/qt5/QtCore/qdebug.h:202:15: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   cannot convert ‘"englishPlate"’ (type ‘const char [13]’) to type ‘QDebug’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/qt5/QtCore/QDebug:1:0,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qdebug.h:219:15: note: template<class aKey, class aT> QDebug operator<<(QDebug, const QHash<Key, T>&)
+ inline QDebug operator<<(QDebug debug, const QHash<aKey, aT> &hash)
+               ^
+/usr/include/qt5/QtCore/qdebug.h:219:15: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   cannot convert ‘"englishPlate"’ (type ‘const char [13]’) to type ‘QDebug’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/qt5/QtCore/QDebug:1:0,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qdebug.h:235:15: note: template<class T1, class T2> QDebug operator<<(QDebug, const QPair<T1, T2>&)
+ inline QDebug operator<<(QDebug debug, const QPair<T1, T2> &pair)
+               ^
+/usr/include/qt5/QtCore/qdebug.h:235:15: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   cannot convert ‘"englishPlate"’ (type ‘const char [13]’) to type ‘QDebug’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/qt5/QtCore/QDebug:1:0,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qdebug.h:243:15: note: template<class T> QDebug operator<<(QDebug, const QSet<T>&)
+ inline QDebug operator<<(QDebug debug, const QSet<T> &set)
+               ^
+/usr/include/qt5/QtCore/qdebug.h:243:15: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   cannot convert ‘"englishPlate"’ (type ‘const char [13]’) to type ‘QDebug’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/qt5/QtCore/QDebug:1:0,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qdebug.h:254:15: note: template<class T> QDebug operator<<(QDebug, const QContiguousCache<T>&)
+ inline QDebug operator<<(QDebug debug, const QContiguousCache<T> &cache)
+               ^
+/usr/include/qt5/QtCore/qdebug.h:254:15: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   cannot convert ‘"englishPlate"’ (type ‘const char [13]’) to type ‘QDebug’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/qt5/QtCore/QDebug:1:0,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qdebug.h:272:15: note: template<class T> QDebug operator<<(QDebug, const QFlags<T>&)
+ inline QDebug operator<<(QDebug debug, const QFlags<T> &flags)
+               ^
+/usr/include/qt5/QtCore/qdebug.h:272:15: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   cannot convert ‘"englishPlate"’ (type ‘const char [13]’) to type ‘QDebug’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/qt5/QtCore/QDate:1:0,
+                 from db/mongo.hpp:10,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qdatetime.h:327:28: note: QDataStream& operator<<(QDataStream&, const QDate&)
+ Q_CORE_EXPORT QDataStream &operator<<(QDataStream &, const QDate &);
+                            ^
+/usr/include/qt5/QtCore/qdatetime.h:327:28: note:   no known conversion for argument 1 from ‘const char [13]’ to ‘QDataStream&’
+/usr/include/qt5/QtCore/qdatetime.h:329:28: note: QDataStream& operator<<(QDataStream&, const QTime&)
+ Q_CORE_EXPORT QDataStream &operator<<(QDataStream &, const QTime &);
+                            ^
+/usr/include/qt5/QtCore/qdatetime.h:329:28: note:   no known conversion for argument 1 from ‘const char [13]’ to ‘QDataStream&’
+/usr/include/qt5/QtCore/qdatetime.h:331:28: note: QDataStream& operator<<(QDataStream&, const QDateTime&)
+ Q_CORE_EXPORT QDataStream &operator<<(QDataStream &, const QDateTime &);
+                            ^
+/usr/include/qt5/QtCore/qdatetime.h:331:28: note:   no known conversion for argument 1 from ‘const char [13]’ to ‘QDataStream&’
+/usr/include/qt5/QtCore/qdatetime.h:338:22: note: QDebug operator<<(QDebug, const QDateTime&)
+ Q_CORE_EXPORT QDebug operator<<(QDebug, const QDateTime &);
+                      ^
+/usr/include/qt5/QtCore/qdatetime.h:338:22: note:   no known conversion for argument 1 from ‘const char [13]’ to ‘QDebug’
+/usr/include/qt5/QtCore/qdatetime.h:336:22: note: QDebug operator<<(QDebug, const QDate&)
+ Q_CORE_EXPORT QDebug operator<<(QDebug, const QDate &);
+                      ^
+/usr/include/qt5/QtCore/qdatetime.h:336:22: note:   no known conversion for argument 1 from ‘const char [13]’ to ‘QDebug’
+/usr/include/qt5/QtCore/qdatetime.h:337:22: note: QDebug operator<<(QDebug, const QTime&)
+ Q_CORE_EXPORT QDebug operator<<(QDebug, const QTime &);
+                      ^
+/usr/include/qt5/QtCore/qdatetime.h:337:22: note:   no known conversion for argument 1 from ‘const char [13]’ to ‘QDebug’
+In file included from /usr/local/include/mongo/client/write_concern.h:18:0,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:32,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bitset:1521:5: note: template<class _CharT, class _Traits, long unsigned int _Nb> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::bitset<_Nb>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bitset:1521:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [13]’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:3312:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::piecewise_linear_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:3312:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [13]’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:3096:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::piecewise_constant_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:3096:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [13]’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:2886:5: note: template<class _IntType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::discrete_distribution<_IntType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:2886:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [13]’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:2427:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::student_t_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:2427:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [13]’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:2352:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::fisher_f_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:2352:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [13]’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:2188:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::chi_squared_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:2188:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [13]’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:2115:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::lognormal_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:2115:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [13]’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:1819:5: note: template<class _IntType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::binomial_distribution<_IntType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:1819:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [13]’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:1552:5: note: template<class _IntType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::poisson_distribution<_IntType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:1552:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [13]’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:1347:5: note: template<class _IntType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::negative_binomial_distribution<_IntType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:1347:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [13]’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:831:5: note: template<class _RandomNumberEngine, long unsigned int __k, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::shuffle_order_engine<_RandomNumberEngine, __k>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:831:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [13]’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:702:5: note: template<class _RandomNumberEngine, long unsigned int __p, long unsigned int __r, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::discard_block_engine<_RandomNumberEngine, __p, __r>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:702:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [13]’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:632:5: note: template<class _UIntType, long unsigned int __w, long unsigned int __s, long unsigned int __r, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::subtract_with_carry_engine<_UIntType, __w, __s, __r>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:632:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [13]’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:156:5: note: template<class _UIntType, _UIntType __a, _UIntType __c, _UIntType __m, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::linear_congruential_engine<_UIntType, __a, __c, __m>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:156:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [13]’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:2750:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::extreme_value_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:2750:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [13]’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:2674:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::weibull_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:2674:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [13]’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:1883:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::exponential_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:1883:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [13]’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:2596:5: note: template<class _RealType1, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::gamma_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:2596:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [13]’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:1232:5: note: template<class _IntType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::geometric_distribution<_IntType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:1232:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [13]’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:2050:5: note: template<class _RealType1, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::normal_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:2050:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [13]’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:1150:5: note: template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::bernoulli_distribution&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:1150:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [13]’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:2275:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::cauchy_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:2275:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [13]’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:1088:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::uniform_real_distribution<_IntType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:1088:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [13]’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:1029:5: note: template<class _IntType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::uniform_int_distribution<_IntType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:1029:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [13]’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:477:5: note: template<class _UIntType1, long unsigned int __w1, long unsigned int __n1, long unsigned int __m1, long unsigned int __r1, _UIntType1 __a1, long unsigned int __u1, _UIntType1 __d1, long unsigned int __s1, _UIntType1 __b1, long unsigned int __t1, _UIntType1 __c1, long unsigned int __l1, _UIntType1 __f1, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::mersenne_twister_engine<_UIntType, __w, __n, __m, __r, __a, __u, __d, __s, __b, __t, __c, __l, __f>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:477:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [13]’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/c++/4.8/random:50:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.h:1277:5: note: template<class _RandomNumberEngine, long unsigned int __w, class _UIntType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::independent_bits_engine<_RandomNumberEngine, __w, _UIntType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.h:1277:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [13]’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/c++/4.8/memory:82:0,
+                 from /usr/include/boost/config/no_tr1/memory.hpp:21,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:27,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/shared_ptr.h:66:5: note: template<class _Ch, class _Tr, class _Tp, __gnu_cxx::_Lock_policy _Lp> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::__shared_ptr<_Tp, _Lp>&)
+     operator<<(std::basic_ostream<_Ch, _Tr>& __os,
+     ^
+/usr/include/c++/4.8/bits/shared_ptr.h:66:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [13]’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from /usr/include/boost/assert.hpp:82,
+                 from /usr/include/boost/system/error_code.hpp:16,
+                 from /usr/include/boost/system/system_error.hpp:14,
+                 from /usr/include/boost/thread/exceptions.hpp:22,
+                 from /usr/include/boost/thread/lock_types.hpp:12,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/ostream:602:5: note: template<class _CharT, class _Traits, class _Tp> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&&, const _Tp&)
+     operator<<(basic_ostream<_CharT, _Traits>&& __os, const _Tp& __x)
+     ^
+/usr/include/c++/4.8/ostream:602:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [13]’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from /usr/include/boost/assert.hpp:82,
+                 from /usr/include/boost/system/error_code.hpp:16,
+                 from /usr/include/boost/system/system_error.hpp:14,
+                 from /usr/include/boost/thread/exceptions.hpp:22,
+                 from /usr/include/boost/thread/lock_types.hpp:12,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/ostream:548:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, const unsigned char*)
+     operator<<(basic_ostream<char, _Traits>& __out, const unsigned char* __s)
+     ^
+/usr/include/c++/4.8/ostream:548:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   mismatched types ‘std::basic_ostream<char, _Traits>’ and ‘const char [13]’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from /usr/include/boost/assert.hpp:82,
+                 from /usr/include/boost/system/error_code.hpp:16,
+                 from /usr/include/boost/system/system_error.hpp:14,
+                 from /usr/include/boost/thread/exceptions.hpp:22,
+                 from /usr/include/boost/thread/lock_types.hpp:12,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/ostream:543:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, const signed char*)
+     operator<<(basic_ostream<char, _Traits>& __out, const signed char* __s)
+     ^
+/usr/include/c++/4.8/ostream:543:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   mismatched types ‘std::basic_ostream<char, _Traits>’ and ‘const char [13]’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from /usr/include/boost/assert.hpp:82,
+                 from /usr/include/boost/system/error_code.hpp:16,
+                 from /usr/include/boost/system/system_error.hpp:14,
+                 from /usr/include/boost/thread/exceptions.hpp:22,
+                 from /usr/include/boost/thread/lock_types.hpp:12,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/ostream:530:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, const char*)
+     operator<<(basic_ostream<char, _Traits>& __out, const char* __s)
+     ^
+/usr/include/c++/4.8/ostream:530:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   mismatched types ‘std::basic_ostream<char, _Traits>’ and ‘const char [13]’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/c++/4.8/ostream:609:0,
+                 from /usr/include/c++/4.8/iostream:39,
+                 from /usr/include/boost/assert.hpp:82,
+                 from /usr/include/boost/system/error_code.hpp:16,
+                 from /usr/include/boost/system/system_error.hpp:14,
+                 from /usr/include/boost/thread/exceptions.hpp:22,
+                 from /usr/include/boost/thread/lock_types.hpp:12,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/ostream.tcc:321:5: note: template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const char*)
+     operator<<(basic_ostream<_CharT, _Traits>& __out, const char* __s)
+     ^
+/usr/include/c++/4.8/bits/ostream.tcc:321:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [13]’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from /usr/include/boost/assert.hpp:82,
+                 from /usr/include/boost/system/error_code.hpp:16,
+                 from /usr/include/boost/system/system_error.hpp:14,
+                 from /usr/include/boost/thread/exceptions.hpp:22,
+                 from /usr/include/boost/thread/lock_types.hpp:12,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/ostream:513:5: note: template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const _CharT*)
+     operator<<(basic_ostream<_CharT, _Traits>& __out, const _CharT* __s)
+     ^
+/usr/include/c++/4.8/ostream:513:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [13]’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from /usr/include/boost/assert.hpp:82,
+                 from /usr/include/boost/system/error_code.hpp:16,
+                 from /usr/include/boost/system/system_error.hpp:14,
+                 from /usr/include/boost/thread/exceptions.hpp:22,
+                 from /usr/include/boost/thread/lock_types.hpp:12,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/ostream:493:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, unsigned char)
+     operator<<(basic_ostream<char, _Traits>& __out, unsigned char __c)
+     ^
+/usr/include/c++/4.8/ostream:493:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   mismatched types ‘std::basic_ostream<char, _Traits>’ and ‘const char [13]’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from /usr/include/boost/assert.hpp:82,
+                 from /usr/include/boost/system/error_code.hpp:16,
+                 from /usr/include/boost/system/system_error.hpp:14,
+                 from /usr/include/boost/thread/exceptions.hpp:22,
+                 from /usr/include/boost/thread/lock_types.hpp:12,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/ostream:488:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, signed char)
+     operator<<(basic_ostream<char, _Traits>& __out, signed char __c)
+     ^
+/usr/include/c++/4.8/ostream:488:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   mismatched types ‘std::basic_ostream<char, _Traits>’ and ‘const char [13]’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from /usr/include/boost/assert.hpp:82,
+                 from /usr/include/boost/system/error_code.hpp:16,
+                 from /usr/include/boost/system/system_error.hpp:14,
+                 from /usr/include/boost/thread/exceptions.hpp:22,
+                 from /usr/include/boost/thread/lock_types.hpp:12,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/ostream:482:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, char)
+     operator<<(basic_ostream<char, _Traits>& __out, char __c)
+     ^
+/usr/include/c++/4.8/ostream:482:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   mismatched types ‘std::basic_ostream<char, _Traits>’ and ‘const char [13]’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from /usr/include/boost/assert.hpp:82,
+                 from /usr/include/boost/system/error_code.hpp:16,
+                 from /usr/include/boost/system/system_error.hpp:14,
+                 from /usr/include/boost/thread/exceptions.hpp:22,
+                 from /usr/include/boost/thread/lock_types.hpp:12,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/ostream:476:5: note: template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, char)
+     operator<<(basic_ostream<_CharT, _Traits>& __out, char __c)
+     ^
+/usr/include/c++/4.8/ostream:476:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [13]’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from /usr/include/boost/assert.hpp:82,
+                 from /usr/include/boost/system/error_code.hpp:16,
+                 from /usr/include/boost/system/system_error.hpp:14,
+                 from /usr/include/boost/thread/exceptions.hpp:22,
+                 from /usr/include/boost/thread/lock_types.hpp:12,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/ostream:471:5: note: template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, _CharT)
+     operator<<(basic_ostream<_CharT, _Traits>& __out, _CharT __c)
+     ^
+/usr/include/c++/4.8/ostream:471:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [13]’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+In file included from /usr/include/c++/4.8/string:52:0,
+                 from /usr/include/boost/thread/exceptions.hpp:20,
+                 from /usr/include/boost/thread/lock_types.hpp:12,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/basic_string.h:2753:5: note: template<class _CharT, class _Traits, class _Alloc> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::basic_string<_CharT, _Traits, _Alloc>&)
+     operator<<(basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/basic_string.h:2753:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:84:63: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [13]’
+             append("englishPlate" << englishPlate.toStdString()).
+                                                               ^
+db/mongo.cpp:87:36: error: no match for ‘operator<<’ (operand types are ‘const char [14]’ and ‘std::string {aka std::basic_string<char>}’)
+             append("detectedImage" << image.toStdString()).
+                                    ^
+db/mongo.cpp:87:36: note: candidates are:
+In file included from /usr/include/qt5/QtCore/qstring.h:45:0,
+                 from /usr/include/qt5/QtCore/QString:1,
+                 from db/mongo.hpp:5,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qchar.h:521:28: note: QDataStream& operator<<(QDataStream&, QChar)
+ Q_CORE_EXPORT QDataStream &operator<<(QDataStream &, QChar);
+                            ^
+/usr/include/qt5/QtCore/qchar.h:521:28: note:   no known conversion for argument 1 from ‘const char [14]’ to ‘QDataStream&’
+In file included from /usr/include/qt5/QtCore/qstring.h:46:0,
+                 from /usr/include/qt5/QtCore/QString:1,
+                 from db/mongo.hpp:5,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qbytearray.h:607:28: note: QDataStream& operator<<(QDataStream&, const QByteArray&)
+ Q_CORE_EXPORT QDataStream &operator<<(QDataStream &, const QByteArray &);
+                            ^
+/usr/include/qt5/QtCore/qbytearray.h:607:28: note:   no known conversion for argument 1 from ‘const char [14]’ to ‘QDataStream&’
+In file included from /usr/include/qt5/QtCore/QString:1:0,
+                 from db/mongo.hpp:5,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qstring.h:1173:28: note: QDataStream& operator<<(QDataStream&, const QString&)
+ Q_CORE_EXPORT QDataStream &operator<<(QDataStream &, const QString &);
+                            ^
+/usr/include/qt5/QtCore/qstring.h:1173:28: note:   no known conversion for argument 1 from ‘const char [14]’ to ‘QDataStream&’
+In file included from /usr/include/qt5/QtCore/qiodevice.h:47:0,
+                 from /usr/include/qt5/QtCore/qtextstream.h:45,
+                 from /usr/include/qt5/QtCore/qdebug.h:50,
+                 from /usr/include/qt5/QtCore/QDebug:1,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qobject.h:549:22: note: QDebug operator<<(QDebug, const QObject*)
+ Q_CORE_EXPORT QDebug operator<<(QDebug, const QObject *);
+                      ^
+/usr/include/qt5/QtCore/qobject.h:549:22: note:   no known conversion for argument 1 from ‘const char [14]’ to ‘QDebug’
+In file included from /usr/include/qt5/QtCore/qtextstream.h:45:0,
+                 from /usr/include/qt5/QtCore/qdebug.h:50,
+                 from /usr/include/qt5/QtCore/QDebug:1,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qiodevice.h:174:22: note: QDebug operator<<(QDebug, QIODevice::OpenMode)
+ Q_CORE_EXPORT QDebug operator<<(QDebug debug, QIODevice::OpenMode modes);
+                      ^
+/usr/include/qt5/QtCore/qiodevice.h:174:22: note:   no known conversion for argument 1 from ‘const char [14]’ to ‘QDebug’
+In file included from /usr/include/qt5/QtCore/qstringlist.h:46:0,
+                 from /usr/include/qt5/QtCore/qvariant.h:52,
+                 from /usr/include/qt5/QtCore/qlocale.h:45,
+                 from /usr/include/qt5/QtCore/qtextstream.h:48,
+                 from /usr/include/qt5/QtCore/qdebug.h:50,
+                 from /usr/include/qt5/QtCore/QDebug:1,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qdatastream.h:246:14: note: template<class T> QDataStream& operator<<(QDataStream&, const QList<T>&)
+ QDataStream& operator<<(QDataStream& s, const QList<T>& l)
+              ^
+/usr/include/qt5/QtCore/qdatastream.h:246:14: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   cannot convert ‘"detectedImage"’ (type ‘const char [14]’) to type ‘QDataStream&’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/qt5/QtCore/qstringlist.h:46:0,
+                 from /usr/include/qt5/QtCore/qvariant.h:52,
+                 from /usr/include/qt5/QtCore/qlocale.h:45,
+                 from /usr/include/qt5/QtCore/qtextstream.h:48,
+                 from /usr/include/qt5/QtCore/qdebug.h:50,
+                 from /usr/include/qt5/QtCore/QDebug:1,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qdatastream.h:272:14: note: template<class T> QDataStream& operator<<(QDataStream&, const QLinkedList<T>&)
+ QDataStream& operator<<(QDataStream& s, const QLinkedList<T>& l)
+              ^
+/usr/include/qt5/QtCore/qdatastream.h:272:14: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   cannot convert ‘"detectedImage"’ (type ‘const char [14]’) to type ‘QDataStream&’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/qt5/QtCore/qstringlist.h:46:0,
+                 from /usr/include/qt5/QtCore/qvariant.h:52,
+                 from /usr/include/qt5/QtCore/qlocale.h:45,
+                 from /usr/include/qt5/QtCore/qtextstream.h:48,
+                 from /usr/include/qt5/QtCore/qdebug.h:50,
+                 from /usr/include/qt5/QtCore/QDebug:1,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qdatastream.h:297:14: note: template<class T> QDataStream& operator<<(QDataStream&, const QVector<T>&)
+ QDataStream& operator<<(QDataStream& s, const QVector<T>& v)
+              ^
+/usr/include/qt5/QtCore/qdatastream.h:297:14: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   cannot convert ‘"detectedImage"’ (type ‘const char [14]’) to type ‘QDataStream&’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/qt5/QtCore/qstringlist.h:46:0,
+                 from /usr/include/qt5/QtCore/qvariant.h:52,
+                 from /usr/include/qt5/QtCore/qlocale.h:45,
+                 from /usr/include/qt5/QtCore/qtextstream.h:48,
+                 from /usr/include/qt5/QtCore/qdebug.h:50,
+                 from /usr/include/qt5/QtCore/QDebug:1,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qdatastream.h:322:14: note: template<class T> QDataStream& operator<<(QDataStream&, const QSet<T>&)
+ QDataStream& operator<<(QDataStream &out, const QSet<T> &set)
+              ^
+/usr/include/qt5/QtCore/qdatastream.h:322:14: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   cannot convert ‘"detectedImage"’ (type ‘const char [14]’) to type ‘QDataStream&’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/qt5/QtCore/qstringlist.h:46:0,
+                 from /usr/include/qt5/QtCore/qvariant.h:52,
+                 from /usr/include/qt5/QtCore/qlocale.h:45,
+                 from /usr/include/qt5/QtCore/qtextstream.h:48,
+                 from /usr/include/qt5/QtCore/qdebug.h:50,
+                 from /usr/include/qt5/QtCore/QDebug:1,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qdatastream.h:361:35: note: template<class Key, class T> QDataStream& operator<<(QDataStream&, const QHash<Key, T>&)
+ Q_OUTOFLINE_TEMPLATE QDataStream &operator<<(QDataStream &out, const QHash<Key, T>& hash)
+                                   ^
+/usr/include/qt5/QtCore/qdatastream.h:361:35: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   cannot convert ‘"detectedImage"’ (type ‘const char [14]’) to type ‘QDataStream&’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/qt5/QtCore/qstringlist.h:46:0,
+                 from /usr/include/qt5/QtCore/qvariant.h:52,
+                 from /usr/include/qt5/QtCore/qlocale.h:45,
+                 from /usr/include/qt5/QtCore/qtextstream.h:48,
+                 from /usr/include/qt5/QtCore/qdebug.h:50,
+                 from /usr/include/qt5/QtCore/QDebug:1,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qdatastream.h:405:35: note: template<class Key, class T> QDataStream& operator<<(QDataStream&, const QMap<Key, T>&)
+ Q_OUTOFLINE_TEMPLATE QDataStream &operator<<(QDataStream &out, const QMap<Key, T> &map)
+                                   ^
+/usr/include/qt5/QtCore/qdatastream.h:405:35: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   cannot convert ‘"detectedImage"’ (type ‘const char [14]’) to type ‘QDataStream&’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/qt5/QtCore/qstringlist.h:46:0,
+                 from /usr/include/qt5/QtCore/qvariant.h:52,
+                 from /usr/include/qt5/QtCore/qlocale.h:45,
+                 from /usr/include/qt5/QtCore/qtextstream.h:48,
+                 from /usr/include/qt5/QtCore/qdebug.h:50,
+                 from /usr/include/qt5/QtCore/QDebug:1,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qdatastream.h:426:21: note: template<class T1, class T2> QDataStream& operator<<(QDataStream&, const QPair<T1, T2>&)
+ inline QDataStream& operator<<(QDataStream& s, const QPair<T1, T2>& p)
+                     ^
+/usr/include/qt5/QtCore/qdatastream.h:426:21: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   cannot convert ‘"detectedImage"’ (type ‘const char [14]’) to type ‘QDataStream&’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/qt5/QtCore/qstringlist.h:48:0,
+                 from /usr/include/qt5/QtCore/qvariant.h:52,
+                 from /usr/include/qt5/QtCore/qlocale.h:45,
+                 from /usr/include/qt5/QtCore/qtextstream.h:48,
+                 from /usr/include/qt5/QtCore/qdebug.h:50,
+                 from /usr/include/qt5/QtCore/QDebug:1,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qregexp.h:122:28: note: QDataStream& operator<<(QDataStream&, const QRegExp&)
+ Q_CORE_EXPORT QDataStream &operator<<(QDataStream &out, const QRegExp &regExp);
+                            ^
+/usr/include/qt5/QtCore/qregexp.h:122:28: note:   no known conversion for argument 1 from ‘const char [14]’ to ‘QDataStream&’
+/usr/include/qt5/QtCore/qregexp.h:127:22: note: QDebug operator<<(QDebug, const QRegExp&)
+ Q_CORE_EXPORT QDebug operator<<(QDebug, const QRegExp &);
+                      ^
+/usr/include/qt5/QtCore/qregexp.h:127:22: note:   no known conversion for argument 1 from ‘const char [14]’ to ‘QDebug’
+In file included from /usr/include/qt5/QtCore/qvariant.h:52:0,
+                 from /usr/include/qt5/QtCore/qlocale.h:45,
+                 from /usr/include/qt5/QtCore/qtextstream.h:48,
+                 from /usr/include/qt5/QtCore/qdebug.h:50,
+                 from /usr/include/qt5/QtCore/QDebug:1,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qstringlist.h:250:21: note: QDataStream& operator<<(QDataStream&, const QStringList&)
+ inline QDataStream &operator<<(QDataStream &out, const QStringList &list)
+                     ^
+/usr/include/qt5/QtCore/qstringlist.h:250:21: note:   no known conversion for argument 1 from ‘const char [14]’ to ‘QDataStream&’
+In file included from /usr/include/qt5/QtCore/qlocale.h:45:0,
+                 from /usr/include/qt5/QtCore/qtextstream.h:48,
+                 from /usr/include/qt5/QtCore/qdebug.h:50,
+                 from /usr/include/qt5/QtCore/QDebug:1,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qvariant.h:834:22: note: QDebug operator<<(QDebug, const QVariant&)
+ Q_CORE_EXPORT QDebug operator<<(QDebug, const QVariant &);
+                      ^
+/usr/include/qt5/QtCore/qvariant.h:834:22: note:   no known conversion for argument 1 from ‘const char [14]’ to ‘QDebug’
+/usr/include/qt5/QtCore/qvariant.h:537:28: note: QDataStream& operator<<(QDataStream&, const QVariant&)
+ Q_CORE_EXPORT QDataStream& operator<< (QDataStream& s, const QVariant& p);
+                            ^
+/usr/include/qt5/QtCore/qvariant.h:537:28: note:   no known conversion for argument 1 from ‘const char [14]’ to ‘QDataStream&’
+/usr/include/qt5/QtCore/qvariant.h:539:28: note: QDataStream& operator<<(QDataStream&, QVariant::Type)
+ Q_CORE_EXPORT QDataStream& operator<< (QDataStream& s, const QVariant::Type p);
+                            ^
+/usr/include/qt5/QtCore/qvariant.h:539:28: note:   no known conversion for argument 1 from ‘const char [14]’ to ‘QDataStream&’
+/usr/include/qt5/QtCore/qvariant.h:835:22: note: QDebug operator<<(QDebug, QVariant::Type)
+ Q_CORE_EXPORT QDebug operator<<(QDebug, const QVariant::Type);
+                      ^
+/usr/include/qt5/QtCore/qvariant.h:835:22: note:   no known conversion for argument 1 from ‘const char [14]’ to ‘QDebug’
+In file included from /usr/include/qt5/QtCore/qtextstream.h:48:0,
+                 from /usr/include/qt5/QtCore/qdebug.h:50,
+                 from /usr/include/qt5/QtCore/QDebug:1,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qlocale.h:966:28: note: QDataStream& operator<<(QDataStream&, const QLocale&)
+ Q_CORE_EXPORT QDataStream &operator<<(QDataStream &, const QLocale &);
+                            ^
+/usr/include/qt5/QtCore/qlocale.h:966:28: note:   no known conversion for argument 1 from ‘const char [14]’ to ‘QDataStream&’
+/usr/include/qt5/QtCore/qlocale.h:971:22: note: QDebug operator<<(QDebug, const QLocale&)
+ Q_CORE_EXPORT QDebug operator<<(QDebug, const QLocale &);
+                      ^
+/usr/include/qt5/QtCore/qlocale.h:971:22: note:   no known conversion for argument 1 from ‘const char [14]’ to ‘QDebug’
+In file included from /usr/include/qt5/QtCore/qdebug.h:50:0,
+                 from /usr/include/qt5/QtCore/QDebug:1,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qtextstream.h:228:21: note: QTextStream& operator<<(QTextStream&, QTextStreamFunction)
+ inline QTextStream &operator<<(QTextStream &s, QTextStreamFunction f)
+                     ^
+/usr/include/qt5/QtCore/qtextstream.h:228:21: note:   no known conversion for argument 1 from ‘const char [14]’ to ‘QTextStream&’
+/usr/include/qt5/QtCore/qtextstream.h:231:21: note: QTextStream& operator<<(QTextStream&, QTextStreamManipulator)
+ inline QTextStream &operator<<(QTextStream &s, QTextStreamManipulator m)
+                     ^
+/usr/include/qt5/QtCore/qtextstream.h:231:21: note:   no known conversion for argument 1 from ‘const char [14]’ to ‘QTextStream&’
+In file included from /usr/include/qt5/QtCore/QDebug:1:0,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qdebug.h:172:15: note: template<class T> QDebug operator<<(QDebug, const QList<T>&)
+ inline QDebug operator<<(QDebug debug, const QList<T> &list)
+               ^
+/usr/include/qt5/QtCore/qdebug.h:172:15: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   cannot convert ‘"detectedImage"’ (type ‘const char [14]’) to type ‘QDebug’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/qt5/QtCore/QDebug:1:0,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qdebug.h:190:15: note: template<class T> QDebug operator<<(QDebug, const QVector<T>&)
+ inline QDebug operator<<(QDebug debug, const QVector<T> &vec)
+               ^
+/usr/include/qt5/QtCore/qdebug.h:190:15: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   cannot convert ‘"detectedImage"’ (type ‘const char [14]’) to type ‘QDebug’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/qt5/QtCore/QDebug:1:0,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qdebug.h:202:15: note: template<class aKey, class aT> QDebug operator<<(QDebug, const QMap<Key, T>&)
+ inline QDebug operator<<(QDebug debug, const QMap<aKey, aT> &map)
+               ^
+/usr/include/qt5/QtCore/qdebug.h:202:15: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   cannot convert ‘"detectedImage"’ (type ‘const char [14]’) to type ‘QDebug’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/qt5/QtCore/QDebug:1:0,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qdebug.h:219:15: note: template<class aKey, class aT> QDebug operator<<(QDebug, const QHash<Key, T>&)
+ inline QDebug operator<<(QDebug debug, const QHash<aKey, aT> &hash)
+               ^
+/usr/include/qt5/QtCore/qdebug.h:219:15: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   cannot convert ‘"detectedImage"’ (type ‘const char [14]’) to type ‘QDebug’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/qt5/QtCore/QDebug:1:0,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qdebug.h:235:15: note: template<class T1, class T2> QDebug operator<<(QDebug, const QPair<T1, T2>&)
+ inline QDebug operator<<(QDebug debug, const QPair<T1, T2> &pair)
+               ^
+/usr/include/qt5/QtCore/qdebug.h:235:15: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   cannot convert ‘"detectedImage"’ (type ‘const char [14]’) to type ‘QDebug’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/qt5/QtCore/QDebug:1:0,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qdebug.h:243:15: note: template<class T> QDebug operator<<(QDebug, const QSet<T>&)
+ inline QDebug operator<<(QDebug debug, const QSet<T> &set)
+               ^
+/usr/include/qt5/QtCore/qdebug.h:243:15: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   cannot convert ‘"detectedImage"’ (type ‘const char [14]’) to type ‘QDebug’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/qt5/QtCore/QDebug:1:0,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qdebug.h:254:15: note: template<class T> QDebug operator<<(QDebug, const QContiguousCache<T>&)
+ inline QDebug operator<<(QDebug debug, const QContiguousCache<T> &cache)
+               ^
+/usr/include/qt5/QtCore/qdebug.h:254:15: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   cannot convert ‘"detectedImage"’ (type ‘const char [14]’) to type ‘QDebug’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/qt5/QtCore/QDebug:1:0,
+                 from db/mongo.hpp:6,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qdebug.h:272:15: note: template<class T> QDebug operator<<(QDebug, const QFlags<T>&)
+ inline QDebug operator<<(QDebug debug, const QFlags<T> &flags)
+               ^
+/usr/include/qt5/QtCore/qdebug.h:272:15: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   cannot convert ‘"detectedImage"’ (type ‘const char [14]’) to type ‘QDebug’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/qt5/QtCore/QDate:1:0,
+                 from db/mongo.hpp:10,
+                 from db/mongo.cpp:1:
+/usr/include/qt5/QtCore/qdatetime.h:327:28: note: QDataStream& operator<<(QDataStream&, const QDate&)
+ Q_CORE_EXPORT QDataStream &operator<<(QDataStream &, const QDate &);
+                            ^
+/usr/include/qt5/QtCore/qdatetime.h:327:28: note:   no known conversion for argument 1 from ‘const char [14]’ to ‘QDataStream&’
+/usr/include/qt5/QtCore/qdatetime.h:329:28: note: QDataStream& operator<<(QDataStream&, const QTime&)
+ Q_CORE_EXPORT QDataStream &operator<<(QDataStream &, const QTime &);
+                            ^
+/usr/include/qt5/QtCore/qdatetime.h:329:28: note:   no known conversion for argument 1 from ‘const char [14]’ to ‘QDataStream&’
+/usr/include/qt5/QtCore/qdatetime.h:331:28: note: QDataStream& operator<<(QDataStream&, const QDateTime&)
+ Q_CORE_EXPORT QDataStream &operator<<(QDataStream &, const QDateTime &);
+                            ^
+/usr/include/qt5/QtCore/qdatetime.h:331:28: note:   no known conversion for argument 1 from ‘const char [14]’ to ‘QDataStream&’
+/usr/include/qt5/QtCore/qdatetime.h:338:22: note: QDebug operator<<(QDebug, const QDateTime&)
+ Q_CORE_EXPORT QDebug operator<<(QDebug, const QDateTime &);
+                      ^
+/usr/include/qt5/QtCore/qdatetime.h:338:22: note:   no known conversion for argument 1 from ‘const char [14]’ to ‘QDebug’
+/usr/include/qt5/QtCore/qdatetime.h:336:22: note: QDebug operator<<(QDebug, const QDate&)
+ Q_CORE_EXPORT QDebug operator<<(QDebug, const QDate &);
+                      ^
+/usr/include/qt5/QtCore/qdatetime.h:336:22: note:   no known conversion for argument 1 from ‘const char [14]’ to ‘QDebug’
+/usr/include/qt5/QtCore/qdatetime.h:337:22: note: QDebug operator<<(QDebug, const QTime&)
+ Q_CORE_EXPORT QDebug operator<<(QDebug, const QTime &);
+                      ^
+/usr/include/qt5/QtCore/qdatetime.h:337:22: note:   no known conversion for argument 1 from ‘const char [14]’ to ‘QDebug’
+In file included from /usr/local/include/mongo/client/write_concern.h:18:0,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:32,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bitset:1521:5: note: template<class _CharT, class _Traits, long unsigned int _Nb> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::bitset<_Nb>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bitset:1521:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [14]’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:3312:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::piecewise_linear_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:3312:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [14]’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:3096:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::piecewise_constant_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:3096:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [14]’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:2886:5: note: template<class _IntType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::discrete_distribution<_IntType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:2886:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [14]’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:2427:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::student_t_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:2427:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [14]’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:2352:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::fisher_f_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:2352:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [14]’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:2188:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::chi_squared_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:2188:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [14]’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:2115:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::lognormal_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:2115:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [14]’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:1819:5: note: template<class _IntType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::binomial_distribution<_IntType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:1819:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [14]’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:1552:5: note: template<class _IntType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::poisson_distribution<_IntType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:1552:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [14]’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:1347:5: note: template<class _IntType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::negative_binomial_distribution<_IntType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:1347:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [14]’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:831:5: note: template<class _RandomNumberEngine, long unsigned int __k, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::shuffle_order_engine<_RandomNumberEngine, __k>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:831:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [14]’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:702:5: note: template<class _RandomNumberEngine, long unsigned int __p, long unsigned int __r, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::discard_block_engine<_RandomNumberEngine, __p, __r>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:702:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [14]’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:632:5: note: template<class _UIntType, long unsigned int __w, long unsigned int __s, long unsigned int __r, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::subtract_with_carry_engine<_UIntType, __w, __s, __r>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:632:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [14]’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:156:5: note: template<class _UIntType, _UIntType __a, _UIntType __c, _UIntType __m, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::linear_congruential_engine<_UIntType, __a, __c, __m>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:156:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [14]’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:2750:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::extreme_value_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:2750:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [14]’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:2674:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::weibull_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:2674:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [14]’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:1883:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::exponential_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:1883:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [14]’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:2596:5: note: template<class _RealType1, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::gamma_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:2596:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [14]’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:1232:5: note: template<class _IntType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::geometric_distribution<_IntType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:1232:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [14]’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:2050:5: note: template<class _RealType1, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::normal_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:2050:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [14]’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:1150:5: note: template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::bernoulli_distribution&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:1150:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [14]’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:2275:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::cauchy_distribution<_RealType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:2275:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [14]’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:1088:5: note: template<class _RealType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::uniform_real_distribution<_IntType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:1088:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [14]’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:1029:5: note: template<class _IntType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::uniform_int_distribution<_IntType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:1029:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [14]’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/c++/4.8/random:52:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.tcc:477:5: note: template<class _UIntType1, long unsigned int __w1, long unsigned int __n1, long unsigned int __m1, long unsigned int __r1, _UIntType1 __a1, long unsigned int __u1, _UIntType1 __d1, long unsigned int __s1, _UIntType1 __b1, long unsigned int __t1, _UIntType1 __c1, long unsigned int __l1, _UIntType1 __f1, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::mersenne_twister_engine<_UIntType, __w, __n, __m, __r, __a, __u, __d, __s, __b, __t, __c, __l, __f>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.tcc:477:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [14]’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/c++/4.8/random:50:0,
+                 from /usr/include/c++/4.8/bits/stl_algo.h:65,
+                 from /usr/include/c++/4.8/algorithm:62,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:42,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/random.h:1277:5: note: template<class _RandomNumberEngine, long unsigned int __w, class _UIntType, class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::independent_bits_engine<_RandomNumberEngine, __w, _UIntType>&)
+     operator<<(std::basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/random.h:1277:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [14]’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/c++/4.8/memory:82:0,
+                 from /usr/include/boost/config/no_tr1/memory.hpp:21,
+                 from /usr/include/boost/smart_ptr/shared_ptr.hpp:27,
+                 from /usr/include/boost/shared_ptr.hpp:17,
+                 from /usr/include/boost/date_time/time_clock.hpp:17,
+                 from /usr/include/boost/thread/thread_time.hpp:9,
+                 from /usr/include/boost/thread/lock_types.hpp:18,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/shared_ptr.h:66:5: note: template<class _Ch, class _Tr, class _Tp, __gnu_cxx::_Lock_policy _Lp> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::__shared_ptr<_Tp, _Lp>&)
+     operator<<(std::basic_ostream<_Ch, _Tr>& __os,
+     ^
+/usr/include/c++/4.8/bits/shared_ptr.h:66:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [14]’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from /usr/include/boost/assert.hpp:82,
+                 from /usr/include/boost/system/error_code.hpp:16,
+                 from /usr/include/boost/system/system_error.hpp:14,
+                 from /usr/include/boost/thread/exceptions.hpp:22,
+                 from /usr/include/boost/thread/lock_types.hpp:12,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/ostream:602:5: note: template<class _CharT, class _Traits, class _Tp> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&&, const _Tp&)
+     operator<<(basic_ostream<_CharT, _Traits>&& __os, const _Tp& __x)
+     ^
+/usr/include/c++/4.8/ostream:602:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [14]’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from /usr/include/boost/assert.hpp:82,
+                 from /usr/include/boost/system/error_code.hpp:16,
+                 from /usr/include/boost/system/system_error.hpp:14,
+                 from /usr/include/boost/thread/exceptions.hpp:22,
+                 from /usr/include/boost/thread/lock_types.hpp:12,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/ostream:548:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, const unsigned char*)
+     operator<<(basic_ostream<char, _Traits>& __out, const unsigned char* __s)
+     ^
+/usr/include/c++/4.8/ostream:548:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   mismatched types ‘std::basic_ostream<char, _Traits>’ and ‘const char [14]’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from /usr/include/boost/assert.hpp:82,
+                 from /usr/include/boost/system/error_code.hpp:16,
+                 from /usr/include/boost/system/system_error.hpp:14,
+                 from /usr/include/boost/thread/exceptions.hpp:22,
+                 from /usr/include/boost/thread/lock_types.hpp:12,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/ostream:543:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, const signed char*)
+     operator<<(basic_ostream<char, _Traits>& __out, const signed char* __s)
+     ^
+/usr/include/c++/4.8/ostream:543:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   mismatched types ‘std::basic_ostream<char, _Traits>’ and ‘const char [14]’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from /usr/include/boost/assert.hpp:82,
+                 from /usr/include/boost/system/error_code.hpp:16,
+                 from /usr/include/boost/system/system_error.hpp:14,
+                 from /usr/include/boost/thread/exceptions.hpp:22,
+                 from /usr/include/boost/thread/lock_types.hpp:12,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/ostream:530:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, const char*)
+     operator<<(basic_ostream<char, _Traits>& __out, const char* __s)
+     ^
+/usr/include/c++/4.8/ostream:530:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   mismatched types ‘std::basic_ostream<char, _Traits>’ and ‘const char [14]’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/c++/4.8/ostream:609:0,
+                 from /usr/include/c++/4.8/iostream:39,
+                 from /usr/include/boost/assert.hpp:82,
+                 from /usr/include/boost/system/error_code.hpp:16,
+                 from /usr/include/boost/system/system_error.hpp:14,
+                 from /usr/include/boost/thread/exceptions.hpp:22,
+                 from /usr/include/boost/thread/lock_types.hpp:12,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/ostream.tcc:321:5: note: template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const char*)
+     operator<<(basic_ostream<_CharT, _Traits>& __out, const char* __s)
+     ^
+/usr/include/c++/4.8/bits/ostream.tcc:321:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [14]’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from /usr/include/boost/assert.hpp:82,
+                 from /usr/include/boost/system/error_code.hpp:16,
+                 from /usr/include/boost/system/system_error.hpp:14,
+                 from /usr/include/boost/thread/exceptions.hpp:22,
+                 from /usr/include/boost/thread/lock_types.hpp:12,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/ostream:513:5: note: template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const _CharT*)
+     operator<<(basic_ostream<_CharT, _Traits>& __out, const _CharT* __s)
+     ^
+/usr/include/c++/4.8/ostream:513:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [14]’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from /usr/include/boost/assert.hpp:82,
+                 from /usr/include/boost/system/error_code.hpp:16,
+                 from /usr/include/boost/system/system_error.hpp:14,
+                 from /usr/include/boost/thread/exceptions.hpp:22,
+                 from /usr/include/boost/thread/lock_types.hpp:12,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/ostream:493:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, unsigned char)
+     operator<<(basic_ostream<char, _Traits>& __out, unsigned char __c)
+     ^
+/usr/include/c++/4.8/ostream:493:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   mismatched types ‘std::basic_ostream<char, _Traits>’ and ‘const char [14]’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from /usr/include/boost/assert.hpp:82,
+                 from /usr/include/boost/system/error_code.hpp:16,
+                 from /usr/include/boost/system/system_error.hpp:14,
+                 from /usr/include/boost/thread/exceptions.hpp:22,
+                 from /usr/include/boost/thread/lock_types.hpp:12,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/ostream:488:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, signed char)
+     operator<<(basic_ostream<char, _Traits>& __out, signed char __c)
+     ^
+/usr/include/c++/4.8/ostream:488:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   mismatched types ‘std::basic_ostream<char, _Traits>’ and ‘const char [14]’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from /usr/include/boost/assert.hpp:82,
+                 from /usr/include/boost/system/error_code.hpp:16,
+                 from /usr/include/boost/system/system_error.hpp:14,
+                 from /usr/include/boost/thread/exceptions.hpp:22,
+                 from /usr/include/boost/thread/lock_types.hpp:12,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/ostream:482:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, char)
+     operator<<(basic_ostream<char, _Traits>& __out, char __c)
+     ^
+/usr/include/c++/4.8/ostream:482:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   mismatched types ‘std::basic_ostream<char, _Traits>’ and ‘const char [14]’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from /usr/include/boost/assert.hpp:82,
+                 from /usr/include/boost/system/error_code.hpp:16,
+                 from /usr/include/boost/system/system_error.hpp:14,
+                 from /usr/include/boost/thread/exceptions.hpp:22,
+                 from /usr/include/boost/thread/lock_types.hpp:12,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/ostream:476:5: note: template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, char)
+     operator<<(basic_ostream<_CharT, _Traits>& __out, char __c)
+     ^
+/usr/include/c++/4.8/ostream:476:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [14]’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from /usr/include/boost/assert.hpp:82,
+                 from /usr/include/boost/system/error_code.hpp:16,
+                 from /usr/include/boost/system/system_error.hpp:14,
+                 from /usr/include/boost/thread/exceptions.hpp:22,
+                 from /usr/include/boost/thread/lock_types.hpp:12,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/ostream:471:5: note: template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, _CharT)
+     operator<<(basic_ostream<_CharT, _Traits>& __out, _CharT __c)
+     ^
+/usr/include/c++/4.8/ostream:471:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [14]’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+In file included from /usr/include/c++/4.8/string:52:0,
+                 from /usr/include/boost/thread/exceptions.hpp:20,
+                 from /usr/include/boost/thread/lock_types.hpp:12,
+                 from /usr/include/boost/thread/lock_algorithms.hpp:11,
+                 from /usr/include/boost/thread/locks.hpp:10,
+                 from /usr/local/include/mongo/client/dbclientinterface.h:23,
+                 from /usr/local/include/mongo/client/connpool.h:22,
+                 from /usr/local/include/mongo/client/dbclient.h:59,
+                 from db/mongo.hpp:4,
+                 from db/mongo.cpp:1:
+/usr/include/c++/4.8/bits/basic_string.h:2753:5: note: template<class _CharT, class _Traits, class _Alloc> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::basic_string<_CharT, _Traits, _Alloc>&)
+     operator<<(basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/basic_string.h:2753:5: note:   template argument deduction/substitution failed:
+db/mongo.cpp:87:57: note:   mismatched types ‘std::basic_ostream<_CharT, _Traits>’ and ‘const char [14]’
+             append("detectedImage" << image.toStdString()).
+                                                         ^
+db/mongo.cpp: At global scope:
+db/mongo.cpp:82:6: warning: unused parameter ‘persianPlate1’ [-Wunused-parameter]
+ void MongoDB::insertPlateForRecord(QString id, QString englishPlate, QString persianPlate1, QString persianPlate2, QString image){
+      ^
+db/mongo.cpp:82:6: warning: unused parameter ‘persianPlate2’ [-Wunused-parameter]
+make: *** [Build/OBJECTS/mongo.o] Error 1

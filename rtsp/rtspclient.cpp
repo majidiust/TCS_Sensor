@@ -2,7 +2,7 @@
 #include "settings.hpp"
 
 RTSPClient::RTSPClient(QString recordId, QString rtspUrl, QString fps, QObject *parent){
-
+    m_id = recordId;
     m_program = "ffmpeg";
     m_root = "/home/agent/TCS_Services/tcs_services/public/www/";
     QDir dir(m_root);
@@ -22,7 +22,7 @@ RTSPClient::RTSPClient(QString recordId, QString rtspUrl, QString fps, QObject *
 
 RTSPClient::~RTSPClient(){
     m_process->close();
-    emit processStopped();
+    emit processStopped(m_id);
 }
 
 void RTSPClient::startProcess(){
@@ -36,7 +36,7 @@ void RTSPClient::stopProcess(){
     {
         m_process->kill();
         this->terminate();
-        emit processStopped();
+        emit processStopped(m_id);
     }
 }
 

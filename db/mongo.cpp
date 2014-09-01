@@ -75,6 +75,20 @@ QString MongoDB::insertNewTraffic(){
     return QString::fromStdString(id);
 }
 
+void MongoDB::makeRecordValid(QString id){
+    m_connection.update(getCollectionName(), BSON("_id" << id.toStdString()), BSON("status" << "true"));
+}
+
+void MongoDB::insertPlateForRecord(QString id, QString englishPlate, QString persianPlate1, QString persianPlate2, QString image){
+    mongo::BSONObj obj = mongo::BSONObjBuilder().
+            append("englishPlate" , englishPlate.toStdString()).
+            append("persianPlate1" , persianPlate1.toStdWString().c_str()).
+            append("persianPlate2" , persianPlate2.toStdWString().c_str()).
+            append("detectedImage" , image.toStdString()).
+            obj();
+    m_connection.update(getCollectionName(), BSON("_id" << id.toStdString()), obj);
+}
+
 MongoDB::MongoDB(){
     m_dbName = "KIG";
     m_traficCollectionName = "traffic";
