@@ -26,6 +26,7 @@ void KIGManager::tryOpenPort(){
         usleep(Settings::ReTryOpenSerialPort);
         std::cout << "Try open serial port ..." << " baudrate : " << Settings::Baudrate << " : port /dev/ttyUSB0" << endl;
     }while(!m_peripheral->openPort("/dev/ttyUSB0", Settings::Baudrate));
+    std::cout<< "Openning theport" << std::endl;
     m_peripheral->start();
 }
 

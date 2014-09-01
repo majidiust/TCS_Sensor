@@ -4,7 +4,7 @@
 RTSPClient::RTSPClient(QString recordId, QString rtspUrl, QString fps, QObject *parent){
 
     m_program = "ffmpeg";
-    m_root = "/home/majid/blob";
+    m_root = "/home/agent/TCS_Services/tcs_services/public/www/";
     QDir dir(m_root);
     if (!dir.exists()){
       dir.mkpath(".");
@@ -34,15 +34,16 @@ void RTSPClient::stopProcess(){
     
     //while(m_process->waitForFinished(250))
     {
-	m_process->kill();
-	this->terminate();
+        m_process->kill();
+        this->terminate();
+        emit processStopped();
     }
-    
 }
 
 void RTSPClient::stopProcessDelayed(){
     
-    QTimer::singleShot(Settings::StopRTSPThr, this, SLOT(stopProcess()));
+    usleep(5000000);
+    stopProcess();
 }
 
 void RTSPClient::readyReadOutput()
