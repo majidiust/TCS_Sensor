@@ -12,4 +12,5 @@ class Camera {
     std::string fps;
     std::string status;
     std::string rtsp;
+    std::string role;
 };

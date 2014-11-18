@@ -73,12 +73,14 @@ void KIGManager::saveEventBegin(){
     vector<Camera*> cameras = m_db.getAllCamera();
     m_client.clear();
     for(int i = 0 ; i < cameras.size() ; i++){
-        RTSPClient * tmpClient = new RTSPClient(id, QString::fromStdString(cameras[i]->rtsp), QString::fromStdString("fps=" + cameras[i]->fps), QString::fromStdString(cameras[i]->name));
-        m_client.push_back(tmpClient);
-        tmpClient->start();
-        if(i == cameras.size() - 1)
-        {
-            connect(tmpClient, SIGNAL(processStopped(QString)), this, SLOT(OnStopRTSP(QString)));
+        if(cameras[i]->role == "plate"){
+            RTSPClient * tmpClient = new RTSPClient(id, QString::fromStdString(cameras[i]->rtsp), QString::fromStdString("fps=" + cameras[i]->fps), QString::fromStdString(cameras[i]->name));
+            m_client.push_back(tmpClient);
+            tmpClient->start();
+            if(i == cameras.size() - 1)
+            {
+                connect(tmpClient, SIGNAL(processStopped(QString)), this, SLOT(OnStopRTSP(QString)));
+            }
         }
     }
 }
@@ -169,8 +171,6 @@ void KIGManager::plateDetectorHandler(string id){
                 }
                 index++;
             }
-
-
             std::cout << "Image Detected and saved" << endl;
             break;
         }

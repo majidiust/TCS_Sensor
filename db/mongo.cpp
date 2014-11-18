@@ -240,6 +240,7 @@ vector<Camera*> MongoDB::getAllCamera(){
 	newCamera->fps = p.getStringField("FPS");
 	newCamera->rtsp = p.getStringField("RTSPUrl");
 	newCamera->status = p.getStringField("Status");
+    newCamera->role = p.getStringField("Role");
 	result.push_back(newCamera);
     }
     return result;
