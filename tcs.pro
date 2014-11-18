@@ -19,10 +19,10 @@ LIBS += -lopencv_objdetect -lopencv_features2d -lopencv_imgproc -lopencv_highgui
 
 # Input
 HEADERS += kigManager.hpp utility/cdate.hpp db/mongo.hpp rtsp/rtspclient.hpp base.hpp peripheral/peripheral.hpp test/peripheralTester.hpp \
-    test/rtsptester.h db/settings.hpp \
+    test/rtsptester.h db/settings.hpp db/camera.hpp \
     test/dbtest.hpp
 SOURCES += kigManager.cpp utility/cdate.cpp db/mongo.cpp rtsp/rtspclient.cpp base.cpp main.cpp peripheral/peripheral.cpp test/peripheralTester.cpp \
-    test/rtsptester.cpp db/settings.cpp \
+    test/rtsptester.cpp db/settings.cpp db/camera.cpp \
     test/dbtest.cpp
 
 RCC_DIR = "Build/RCC"

@@ -4,7 +4,7 @@
 
 KIGManager::KIGManager(){
     std::cout << "Kaveh industrial group control traffic system" << endl;
-    m_root = "/home/agent/TCS_Services/tcs_services/public/www/";
+    m_root = "/home/blurkaveh/TCS_Services/tcs_services/public/www/";
 }
 
 void KIGManager::start(){
@@ -69,49 +69,92 @@ void KIGManager::newCommandHandler(int commandType)
 void KIGManager::saveEventBegin(){
     QString id = m_db.insertNewTraffic();
     std::cout << id.toStdString() << endl;
-    m_client = new RTSPClient(id, QString::fromStdString(Settings::RTSPUrl), QString::fromStdString(Settings::FPS));
-    connect(m_client, SIGNAL(processStopped(QString)), this, SLOT(OnStopRTSP(QString)));
-    m_client->start();
+    vector<Camera*> cameras = m_db.getAllCamera();
+    m_client.clear();
+    for(int i = 0 ; i < cameras.size() ; i++){
+	RTSPClient * tmpClient = new RTSPClient(id, QString::fromStdString(cameras[i]->rtsp), QString::fromStdString("fps=" + cameras[i]->fps), QString::fromStdString(cameras[i]->name));
+	m_client.push_back(tmpClient);
+	tmpClient->start();
+	if(i == 0)
+	{
+	    connect(tmpClient, SIGNAL(processStopped(QString)), this, SLOT(OnStopRTSP(QString)));
+	}
+    }
 }
 
 void KIGManager::saveEventEnd(){
     std::cout << "saveEventEnd" << endl;
-    m_client->stopProcessDelayed();
+    for(int i = 0 ; i < m_client.size() ; i++){
+	m_client[i]->stopProcessDelayed();
+    }
 }
 
 void KIGManager::saveEventOnDemand(){
     QString id = m_db.insertNewTraffic();
     std::cout << id.toStdString() << endl;
-    m_client = new RTSPClient(id, QString::fromStdString(Settings::RTSPUrl), QString::fromStdString(Settings::FPS));
-    m_client->start();
-    m_client->stopProcessDelayed();
+    //m_client = new RTSPClient(id, QString::fromStdString(Settings::RTSPUrl), QString::fromStdString(Settings::FPS));
+    //m_client->start();
+    //m_client->stopProcessDelayed();
 }
 
 void KIGManager::OnStopRTSP(QString id){
+    std::cout << " On Stop RTS : " << id.toStdString() <<  endl;
     m_db.makeRecordValid(id);
     boost::shared_ptr<boost::thread> detectorPlate = boost::shared_ptr<boost::thread>(new boost::thread(boost::bind(&KIGManager::plateDetectorHandler, this, id.toStdString())));
 }
 
 void KIGManager::plateDetectorHandler(string id){
+    
+    usleep(5000000);
+    std::cout << " Try to find true plate in images for " << id << endl;
     DIR *dp;
     CarPlateRecognition lpr;
     dp = opendir((m_root + id).c_str());
     struct dirent *dirp;
     while(dirp = readdir(dp)){
-        std::string imageName = m_root + dirp->d_name;
+        std::string imageName = m_root + id + "/" + dirp->d_name;
+	std::cout << "Inspecting the image " << imageName << endl;
         Mat img = imread(imageName);
         if(img.empty())
+	{
+	    std::cout << "Image is Empty : " << imageName << endl;
             continue;
+	}
+
+	// end of detection
         vector<Plate> plates = lpr.PlateDetognitionStandard(img, Mat());
         bool isDetected = false;
         for(int i = 0 ; i < plates.size() ; i++){
-            QString persian1 = QString::fromStdWString(plates[i].plateStringShow);
+	    //std::cout << plates[i].plateStringShow << " : " << plates[i].plateString0 << " : " << plates[i].plateString << endl;
+	    QString persian1 = QString::fromStdWString(plates[i].plateStringShow);
             QString english =  QString::fromStdString(plates[i].plateString0);
             QString persian2 = QString::fromStdWString(plates[i].plateString);
-            m_db.insertPlateForRecord(QString::fromStdString(id), english, persian1, persian2, QString::fromStdString(imageName));
+            qDebug() << persian1 << " : " << english << " : " << persian2 ;
+	    if(i >= 1)
+	    {
+		    QString duplicateId = m_db.insertNewTraffic();
+		    QDir tmpDir(QString::fromStdString((m_root + duplicateId.toStdString())));
+		    if(!tmpDir.exists()){
+			tmpDir.mkpath(".");
+    		    }
+		    string cmd = "cp " + m_root + id + "/* " + m_root + duplicateId.toStdString() + " -r";
+		    std::cout << "CMD IS : " << cmd << endl;
+		    system(cmd.c_str());
+		    m_db.insertPlateForRecord(duplicateId, english, persian1, persian2, QString::fromStdString(imageName));
+	    }
+	    else{
+		m_db.insertPlateForRecord(QString::fromStdString(id), english, persian1, persian2, QString::fromStdString(imageName));
+	    }
             isDetected = true;
         }
         if(isDetected)
+	{
+	    std::cout << "Image Detected and saved" << endl;	
             break;
+	}
+	else
+	{
+	    std::cout << "Image is not detected" << endl;
+	}
     }
 }

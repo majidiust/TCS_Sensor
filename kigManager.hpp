@@ -2,9 +2,15 @@
 #define KIGMANAGER_H
 
 #include <QObject>
+#include <QImage>
+#include <QColor>
+#include <QRgb>
+#include <QVector>
 #include "db/mongo.hpp"
 #include "peripheral/peripheral.hpp"
 #include "rtsp/rtspclient.hpp"
+#include <vector>
+using namespace std;
 
 class KIGManager: public QObject
 {
@@ -27,7 +33,7 @@ public slots:
         void    OnStopRTSP(QString id);
 
     private:    
-        RTSPClient *m_client;
+        vector<RTSPClient*> m_client;
         std::string m_root;
         MongoDB m_db;
         Peripheral *m_peripheral;

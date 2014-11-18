@@ -1,0 +1,62 @@
+Kaveh industrial group control traffic system
+ Started KIG Agent ............ 
+Connected to database successfully 
+settings readed from database
+try : 9600
+ BaudRate : 9600, RTSP : rtsp://admin:admin@192.168.2.1:554/mpeg, FPS  : fps=5/10, STOPRTSpthr : 5000, RetryOpenSeriaPort : 2000000
+Base class of project
+Log : Peripheral constructor
+Try open serial port ... baudrate : 9600 : port /dev/ttyUSB0
+Log : Error in openning serial
+Try open serial port ... baudrate : 9600 : port /dev/ttyUSB0
+Log : Error in openning serial
+Try open serial port ... baudrate : 9600 : port /dev/ttyUSB0
+Log : Error in openning serial
+Try open serial port ... baudrate : 9600 : port /dev/ttyUSB0
+Log : Error in openning serial
+Try open serial port ... baudrate : 9600 : port /dev/ttyUSB0
+Log : Error in openning serial
+Try open serial port ... baudrate : 9600 : port /dev/ttyUSB0
+Log : Error in openning serial
+Try open serial port ... baudrate : 9600 : port /dev/ttyUSB0
+Log : Error in openning serial
+Try open serial port ... baudrate : 9600 : port /dev/ttyUSB0
+Log : Error in openning serial
+Try open serial port ... baudrate : 9600 : port /dev/ttyUSB0
+Log : Error in openning serial
+Try open serial port ... baudrate : 9600 : port /dev/ttyUSB0
+Log : Error in openning serial
+Try open serial port ... baudrate : 9600 : port /dev/ttyUSB0
+Log : Error in openning serial
+Try open serial port ... baudrate : 9600 : port /dev/ttyUSB0
+Log : Error in openning serial
+Try open serial port ... baudrate : 9600 : port /dev/ttyUSB0
+Log : Error in openning serial
+Try open serial port ... baudrate : 9600 : port /dev/ttyUSB0
+Log : Error in openning serial
+Try open serial port ... baudrate : 9600 : port /dev/ttyUSB0
+Log : Error in openning serial
+Try open serial port ... baudrate : 9600 : port /dev/ttyUSB0
+Log : Error in openning serial
+Try open serial port ... baudrate : 9600 : port /dev/ttyUSB0
+Log : Error in openning serial
+Try open serial port ... baudrate : 9600 : port /dev/ttyUSB0
+Log : Error in openning serial
+Try open serial port ... baudrate : 9600 : port /dev/ttyUSB0
+Log : Error in openning serial
+Try open serial port ... baudrate : 9600 : port /dev/ttyUSB0
+Log : Error in openning serial
+Try open serial port ... baudrate : 9600 : port /dev/ttyUSB0
+Log : Error in openning serial
+Try open serial port ... baudrate : 9600 : port /dev/ttyUSB0
+Log : Error in openning serial
+Try open serial port ... baudrate : 9600 : port /dev/ttyUSB0
+Log : Error in openning serial
+Try open serial port ... baudrate : 9600 : port /dev/ttyUSB0
+Log : Error in openning serial
+Try open serial port ... baudrate : 9600 : port /dev/ttyUSB0
+Log : Error in openning serial
+Try open serial port ... baudrate : 9600 : port /dev/ttyUSB0
+Log : Error in openning serial
+Try open serial port ... baudrate : 9600 : port /dev/ttyUSB0
+Log : Error in openning serial
