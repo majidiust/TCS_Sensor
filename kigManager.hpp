@@ -10,7 +10,17 @@
 #include "peripheral/peripheral.hpp"
 #include "rtsp/rtspclient.hpp"
 #include <vector>
+#include <map>
+
 using namespace std;
+class PlateProfile{
+public:
+    std::string englishPlate;
+    std::wstring persianPlate1;
+    std::wstring persianPlate2;
+    int count;
+};
+
 
 class KIGManager: public QObject
 {
@@ -39,5 +49,9 @@ public slots:
         Peripheral *m_peripheral;
         Peripheral::PeripheralConnection m_connection;
         int m_lastStep;
+        std::vector<PlateProfile> m_detectedPlates;
+        std::vector<PlateProfile> m_lastPlates;
 };
+
+
 #endif
