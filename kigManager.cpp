@@ -137,6 +137,7 @@ void KIGManager::plateDetectorHandler(string id){
             for(int i = 0 ; i < m_detectedPlates.size(); i++){
                 if(m_detectedPlates[i].persianPlate2 == plates[i].plateString){
                     m_detectedPlates[i].count ++;
+		    qDebug() << " ------------------------------- This plate detected before ";
                     f = true;
                     break;
                 }
@@ -148,15 +149,17 @@ void KIGManager::plateDetectorHandler(string id){
                 tmpProfile.persianPlate1 = plates[i].plateStringShow;
                 tmpProfile.persianPlate2 = plates[i].plateString;
                 m_detectedPlates.push_back(tmpProfile);
+		qDebug() << " --------------------------------- This plate is new";
             }
             isDetected = true;
         }
-        if(isDetected)
+        if(true)
         {
             int index = 0;
             for(int  i = 0 ; i < m_detectedPlates.size() ; i++){
                 if(index == 0){
                     m_db.insertPlateForRecord(QString::fromStdString(id), QString::fromStdString(m_detectedPlates[i].englishPlate), QString::fromStdWString(m_detectedPlates[i].persianPlate1), QString::fromStdWString(m_detectedPlates[i].persianPlate2), QString::fromStdString(imageName));
+		    qDebug() << " ------------------------------- save for first time";
                 }
                 else{
                     QString duplicateId = m_db.insertNewTraffic();
@@ -168,6 +171,7 @@ void KIGManager::plateDetectorHandler(string id){
                     std::cout << "CMD IS : " << cmd << endl;
                     system(cmd.c_str());
                     m_db.insertPlateForRecord(duplicateId, QString::fromStdString(m_detectedPlates[i].englishPlate), QString::fromStdWString(m_detectedPlates[i].persianPlate1), QString::fromStdWString(m_detectedPlates[i].persianPlate2), QString::fromStdString(imageName));
+		    qDebug() << " -------------------------------Saved for second time";
                 }
                 index++;
             }
