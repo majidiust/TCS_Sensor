@@ -1,7 +1,7 @@
 #include "rtspclient.hpp"
 #include "settings.hpp"
 
-RTSPClient::RTSPClient(QString recordId, QString rtspUrl, QString fps, QString name,  QObject *parent){
+RTSPClient::RTSPClient(QString recordId, QString rtspUrl, QString fps, QString name, QString role,  QObject *parent){
     m_id = recordId;
     m_program = "ffmpeg";
     m_root = "/home/blurkaveh/TCS_Services/tcs_services/public/www/";
@@ -14,7 +14,7 @@ RTSPClient::RTSPClient(QString recordId, QString rtspUrl, QString fps, QString n
     if (!dir2.exists()){
         dir2.mkpath(".");
     }
-    m_argument << "-i" << rtspUrl << "-f" << "image2" << "-vf" << fps << m_root+ "/" + recordId +"/" + name + "_img%03d.jpg";
+    m_argument << "-i" << rtspUrl << "-f" << "image2" << "-vf" << fps << m_root+ "/" + recordId +"/" + role + " _" + name + "_img%03d.jpg";
     qDebug() << m_argument ;
     m_process = new QProcess();
     m_process->moveToThread(this);

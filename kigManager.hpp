@@ -18,6 +18,7 @@ public:
     std::string englishPlate;
     std::wstring persianPlate1;
     std::wstring persianPlate2;
+    std::string imageName;
     int count;
 };
 
@@ -38,6 +39,7 @@ class KIGManager: public QObject
         void	tryOpenPort();
 
         void    plateDetectorHandler(std::string id);
+        string  getImageRole(string imageName);
 
 public slots:
         void    OnStopRTSP(QString id);
@@ -49,8 +51,8 @@ public slots:
         Peripheral *m_peripheral;
         Peripheral::PeripheralConnection m_connection;
         int m_lastStep;
-        std::vector<PlateProfile> m_detectedPlates;
         std::vector<PlateProfile> m_lastPlates;
+        boost::mutex m_lock;
 };
 
 

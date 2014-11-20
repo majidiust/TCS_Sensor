@@ -72,15 +72,15 @@ void KIGManager::saveEventBegin(){
     std::cout << id.toStdString() << endl;
     vector<Camera*> cameras = m_db.getAllCamera();
     m_client.clear();
+    bool isAsigned = false;
     for(int i = 0 ; i < cameras.size() ; i++){
-        if(cameras[i]->role == "plate"){
-            RTSPClient * tmpClient = new RTSPClient(id, QString::fromStdString(cameras[i]->rtsp), QString::fromStdString("fps=" + cameras[i]->fps), QString::fromStdString(cameras[i]->name));
-            m_client.push_back(tmpClient);
-            tmpClient->start();
-            if(i == cameras.size() - 1)
-            {
-                connect(tmpClient, SIGNAL(processStopped(QString)), this, SLOT(OnStopRTSP(QString)));
-            }
+        RTSPClient * tmpClient = new RTSPClient(id, QString::fromStdString(cameras[i]->rtsp), QString::fromStdString("fps=" + cameras[i]->fps), QString::fromStdString(cameras[i]->name), QString::fromStdString(cameras[i]->role));
+        m_client.push_back(tmpClient);
+        tmpClient->start();
+        if( i == cameras.size() -1)
+        {
+            isAsigned = true;
+            connect(tmpClient, SIGNAL(processStopped(QString)), this, SLOT(OnStopRTSP(QString)));
         }
     }
 }
@@ -107,62 +107,75 @@ void KIGManager::OnStopRTSP(QString id){
 }
 
 void KIGManager::plateDetectorHandler(string id){
-    
-    usleep(5000000);
-    std::cout << " Try to find true plate in images for " << id << endl;
-    DIR *dp;
-    CarPlateRecognition lpr;
-    dp = opendir((m_root + id).c_str());
-    struct dirent *dirp;
-    while(dirp = readdir(dp)){
-        std::string imageName = m_root + id + "/" + dirp->d_name;
-        std::cout << "Inspecting the image " << imageName << endl;
-        Mat img = imread(imageName);
-        if(img.empty())
-        {
-            std::cout << "Image is Empty : " << imageName << endl;
-            continue;
-        }
+    if(m_lock.try_lock()){
+        std::vector<PlateProfile> m_detectedPlates;
+        usleep(5000000);
+        std::cout << " Try to find true plate in images for " << id << endl;
+        DIR *dp;
+        CarPlateRecognition lpr;
+        dp = opendir((m_root + id).c_str());
+        m_detectedPlates.clear();
+        struct dirent *dirp;
+        while(dirp = readdir(dp)){
+            std::string imageName = m_root + id + "/" + dirp->d_name;
 
-        // end of detection
-        vector<Plate> plates = lpr.PlateDetognitionStandard(img, Mat());
-        bool isDetected = false;
-        for(int i = 0 ; i < plates.size() ; i++){
-            //std::cout << plates[i].plateStringShow << " : " << plates[i].plateString0 << " : " << plates[i].plateString << endl;
-            QString persian1 = QString::fromStdWString(plates[i].plateStringShow);
-            QString english =  QString::fromStdString(plates[i].plateString0);
-            QString persian2 = QString::fromStdWString(plates[i].plateString);
-            qDebug() << persian1 << " : " << english << " : " << persian2 ;
-            bool f = false;
-            for(int i = 0 ; i < m_detectedPlates.size(); i++){
-                if(m_detectedPlates[i].persianPlate2 == plates[i].plateString){
-                    m_detectedPlates[i].count ++;
-		    qDebug() << " ------------------------------- This plate detected before ";
-                    f = true;
-                    break;
+            std::cout << "Inspecting the image " << imageName << endl;
+            Mat img = imread(imageName);
+            if(img.empty())
+            {
+                std::cout << "Image is Empty : " << imageName << endl;
+                continue;
+            }
+            qDebug() << "-------------------------Image Role---------" << QString::fromStdString(getImageRole(imageName));
+            if(getImageRole(imageName) != "plate "){
+
+                continue;
+            }
+            // end of detection
+            vector<Plate> plates = lpr.PlateDetognitionStandard(img, Mat());
+            qDebug() << " ----------------------------------------Plates : " << plates.size() ;
+            for(int i = 0 ; i < plates.size() ; i++){
+                //std::cout << plates[i].plateStringShow << " : " << plates[i].plateString0 << " : " << plates[i].plateString << endl;
+                QString persian1 = QString::fromStdWString(plates[i].plateStringShow);
+                QString english =  QString::fromStdString(plates[i].plateString0);
+                QString persian2 = QString::fromStdWString(plates[i].plateString);
+
+                bool f = false;
+                for(int k = 0 ; k < m_detectedPlates.size(); k++){
+                    if(m_detectedPlates[k].persianPlate2 == plates[i].plateString){
+                        // m_detectedPlates[i].count ++;
+                        qDebug() << " ------------------------------- This plate detected before ";
+                        qDebug() << persian1 << " : " << english << " : " << persian2 ;
+                        f = true;
+                        break;
+                    }
+                }
+                if(!f){
+                    qDebug() << " --------------------------------- This plate is new";
+                    qDebug() << persian1 << " : " << english << " : " << persian2 ;
+                    PlateProfile tmpProfile;
+                    tmpProfile.count = 0;
+                    tmpProfile.englishPlate = plates[i].plateString0;
+                    tmpProfile.persianPlate1 = plates[i].plateStringShow;
+                    tmpProfile.persianPlate2 = plates[i].plateString;
+                    tmpProfile.imageName = imageName;
+                    m_detectedPlates.push_back(tmpProfile);
+
                 }
             }
-            if(!f){
-                PlateProfile tmpProfile;
-                tmpProfile.count = 0;
-                tmpProfile.englishPlate = plates[i].plateString0;
-                tmpProfile.persianPlate1 = plates[i].plateStringShow;
-                tmpProfile.persianPlate2 = plates[i].plateString;
-                m_detectedPlates.push_back(tmpProfile);
-		qDebug() << " --------------------------------- This plate is new";
-            }
-            isDetected = true;
         }
+
         if(true)
         {
-            int index = 0;
+            qDebug() << " ------------------------------- Number of detected plates in profile " << m_detectedPlates.size() ;
             for(int  i = 0 ; i < m_detectedPlates.size() ; i++){
-                if(index == 0){
-                    m_db.insertPlateForRecord(QString::fromStdString(id), QString::fromStdString(m_detectedPlates[i].englishPlate), QString::fromStdWString(m_detectedPlates[i].persianPlate1), QString::fromStdWString(m_detectedPlates[i].persianPlate2), QString::fromStdString(imageName));
-		    qDebug() << " ------------------------------- save for first time";
+                if(i == 0){
+                    m_db.insertPlateForRecord(QString::fromStdString(id), QString::fromStdString(m_detectedPlates[i].englishPlate), QString::fromStdWString(m_detectedPlates[i].persianPlate1), QString::fromStdWString(m_detectedPlates[i].persianPlate2), QString::fromStdString(m_detectedPlates[i].imageName));
+                    qDebug() << " ------------------------------- save for first time";
                 }
                 else{
                     QString duplicateId = m_db.insertNewTraffic();
+                    qDebug() << "1" ;
                     QDir tmpDir(QString::fromStdString((m_root + duplicateId.toStdString())));
                     if(!tmpDir.exists()){
                         tmpDir.mkpath(".");
@@ -170,17 +183,37 @@ void KIGManager::plateDetectorHandler(string id){
                     string cmd = "cp " + m_root + id + "/* " + m_root + duplicateId.toStdString() + " -r";
                     std::cout << "CMD IS : " << cmd << endl;
                     system(cmd.c_str());
-                    m_db.insertPlateForRecord(duplicateId, QString::fromStdString(m_detectedPlates[i].englishPlate), QString::fromStdWString(m_detectedPlates[i].persianPlate1), QString::fromStdWString(m_detectedPlates[i].persianPlate2), QString::fromStdString(imageName));
-		    qDebug() << " -------------------------------Saved for second time";
+                    qDebug() << "2" ;
+                    m_db.insertPlateForRecord(duplicateId, QString::fromStdString(m_detectedPlates[i].englishPlate), QString::fromStdWString(m_detectedPlates[i].persianPlate1), QString::fromStdWString(m_detectedPlates[i].persianPlate2), QString::fromStdString(m_detectedPlates[i].imageName));
+                    qDebug() << " -------------------------------Saved for second time";
                 }
-                index++;
             }
             std::cout << "Image Detected and saved" << endl;
-            break;
         }
         else
         {
             std::cout << "Image is not detected" << endl;
         }
+        m_lock.unlock();
     }
+}
+
+string KIGManager::getImageRole(string imageName){
+    if(imageName.size() <= 1)
+        return "";
+    string res = "";
+    int bi = 0;
+    for(int i = 0 ; i < imageName.length() ; i++){
+        if(imageName[i] == '/'){
+            bi = i;
+        }
+    }
+
+    for(int i = bi+1 ; i < imageName.size() ; i++){
+        if(imageName[i] != '_'){
+            res+= imageName[i];
+        }
+        else break;
+    }
+    return res;
 }

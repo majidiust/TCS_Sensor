@@ -17,7 +17,7 @@ class RTSPClient : public QThread
 {
     Q_OBJECT
 public:
-    RTSPClient(QString recordId, QString rtspUrl, QString fps="1/1", QString name="img", QObject *parent = 0);
+    RTSPClient(QString recordId, QString rtspUrl, QString fps="1/1", QString name="img", QString role="plate", QObject *parent = 0);
     ~RTSPClient();
 public slots:
     void startProcess();
