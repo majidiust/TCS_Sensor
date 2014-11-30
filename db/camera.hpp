@@ -10,7 +10,7 @@ class Camera {
     public:
     std::string name;
     std::string fps;
-    std::string status;
+    bool status;
     std::string rtsp;
     std::string role;
 };

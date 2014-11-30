@@ -74,13 +74,16 @@ void KIGManager::saveEventBegin(){
     m_client.clear();
     bool isAsigned = false;
     for(int i = 0 ; i < cameras.size() ; i++){
-        RTSPClient * tmpClient = new RTSPClient(id, QString::fromStdString(cameras[i]->rtsp), QString::fromStdString("fps=" + cameras[i]->fps), QString::fromStdString(cameras[i]->name), QString::fromStdString(cameras[i]->role));
-        m_client.push_back(tmpClient);
-        tmpClient->start();
-        if( i == cameras.size() -1)
-        {
-            isAsigned = true;
-            connect(tmpClient, SIGNAL(processStopped(QString)), this, SLOT(OnStopRTSP(QString)));
+        std::cout << " Camera status : " << cameras[i]->status << std::endl;
+        if(cameras[i]->status){
+            RTSPClient * tmpClient = new RTSPClient(id, QString::fromStdString(cameras[i]->rtsp), QString::fromStdString("fps=" + cameras[i]->fps), QString::fromStdString(cameras[i]->name), QString::fromStdString(cameras[i]->role));
+            m_client.push_back(tmpClient);
+            tmpClient->start();
+            if( i == cameras.size() -1)
+            {
+                isAsigned = true;
+                connect(tmpClient, SIGNAL(processStopped(QString)), this, SLOT(OnStopRTSP(QString)));
+            }
         }
     }
 }
